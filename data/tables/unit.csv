@@ -1,0 +1,5 @@
+unit_id,nama_unit,lokasi,kepala_pegawai_id
+U01,Teknologi Informasi,Jakarta,P001
+U02,Keuangan,Jakarta,P004
+U03,Sumber Daya Manusia,Bandung,P007
+U04,Operasional,Surabaya,P010

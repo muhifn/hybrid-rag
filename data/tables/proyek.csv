@@ -1,0 +1,11 @@
+proyek_id,nama_proyek,unit_id,penanggung_jawab_pegawai_id,anggaran,status,tahun
+PR01,Migrasi Server ke Cloud,U01,P002,450000000,selesai,2024
+PR02,Pengembangan Portal Internal,U01,P003,180000000,berjalan,2025
+PR03,Audit Keamanan Sistem,U01,P002,95000000,berjalan,2025
+PR04,Implementasi Sistem Akuntansi,U02,P005,320000000,selesai,2024
+PR05,Digitalisasi Arsip Keuangan,U02,P006,48000000,berjalan,2025
+PR06,Pelatihan Kepemimpinan,U03,P008,75000000,selesai,2024
+PR07,Sistem Penilaian Kinerja,U03,P008,210000000,berjalan,2025
+PR08,Rekrutmen Terpadu,U03,P009,36000000,perencanaan,2025
+PR09,Optimalisasi Gudang,U04,P011,265000000,berjalan,2025
+PR10,Pengadaan Kendaraan Operasional,U04,P012,520000000,perencanaan,2025

@@ -1,0 +1,13 @@
+[project]
+name = "hybrid-rag-api"
+version = "1.0.0"
+description = "Hybrid RAG chatbot (vector + graph) with LangChain, LM Studio, Qdrant and FastAPI"
+requires-python = ">=3.10"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+filterwarnings = [
+    "ignore::DeprecationWarning",
+    "ignore::UserWarning",
+]

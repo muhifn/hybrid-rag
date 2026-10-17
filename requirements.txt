@@ -1,0 +1,36 @@
+# Python 3.10+
+# pip install -r requirements.txt
+
+# --- LangChain ---
+langchain>=1.0
+langchain-core>=1.0
+langchain-classic>=1.0          # EnsembleRetriever (moved here in LangChain 1.x)
+langchain-community>=0.4        # BM25Retriever, SQLDatabase, PyPDFLoader
+langchain-openai>=1.0           # ChatOpenAI -> LM Studio
+langchain-huggingface>=1.0      # HuggingFaceEmbeddings (BAAI/bge-m3)
+langchain-qdrant>=1.0
+langchain-text-splitters>=1.0
+sentence-transformers>=3.0
+transformers>=4.40,<5   # v5 reorganised processors and breaks bge-m3 loading (AutoProcessor)
+rank-bm25>=0.2
+
+# --- Stores ---
+qdrant-client>=1.12
+SQLAlchemy>=2.0
+langchain-neo4j>=0.4            # only needed for GRAPH_BACKEND=neo4j
+neo4j>=5.20
+
+# --- API ---
+fastapi>=0.115
+uvicorn[standard]>=0.30
+pydantic>=2.7
+pydantic-settings>=2.3
+httpx>=0.27
+
+# --- Frontend ---
+streamlit>=1.40
+
+# --- Documents / evaluation / tests ---
+pypdf>=4.2
+matplotlib>=3.8
+pytest>=8.0

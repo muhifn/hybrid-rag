@@ -1,0 +1,13 @@
+pegawai_id,nama,jabatan,unit_id,tahun_masuk,gaji_pokok
+P001,Andi Prasetyo,Kepala Unit,U01,2015,14500000
+P002,Budi Santoso,Analis Sistem,U01,2018,9500000
+P003,Citra Dewi,Pengembang Perangkat Lunak,U01,2020,8800000
+P004,Dian Puspita,Kepala Unit,U02,2014,14800000
+P005,Eko Wijaya,Akuntan,U02,2019,9200000
+P006,Fitri Handayani,Staf Keuangan,U02,2021,7400000
+P007,Gunawan Saputra,Kepala Unit,U03,2013,15100000
+P008,Hesti Rahmawati,Analis SDM,U03,2017,9700000
+P009,Irfan Maulana,Staf SDM,U03,2022,7100000
+P010,Joko Susilo,Kepala Unit,U04,2012,15400000
+P011,Kartika Sari,Supervisor Operasional,U04,2016,10300000
+P012,Lukman Hakim,Staf Operasional,U04,2023,6900000

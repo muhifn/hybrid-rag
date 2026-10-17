@@ -1,0 +1,74 @@
+"""Prompts for question condensation and answer synthesis, plus context formatting.
+
+Design decisions behind the answer prompt (worth citing in the methodology):
+  1. Numbered context + mandatory citations ([1], [TABLE]) make every claim
+     traceable and discourage fabrication - inventing a fact would also mean
+     inventing a citation.
+  2. Explicit permission to say "not found". Without it, LLMs fill gaps from
+     parametric knowledge, which breaks the claim that answers come from the
+     knowledge base.
+  3. Table results are marked as exact database computations to be copied, not
+     recomputed: LLMs are poor at arithmetic and the database already did it.
+  4. Low temperature (0.1): the task is extractive, and reproducible output
+     matters for repeatable experiments.
+"""
+
+from __future__ import annotations
+
+from langchain_core.documents import Document
+from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
+
+from app.graph.base import GraphResult
+
+NOT_FOUND = "Informasi tersebut tidak ditemukan dalam basis pengetahuan."
+
+CONDENSE_PROMPT = ChatPromptTemplate.from_messages([
+    ("system",
+     "Rewrite the user's follow-up question as a STANDALONE question that can be "
+     "understood without the conversation.\n"
+     "Rules:\n"
+     "1. Replace pronouns and references (nya, itu, tersebut, dia, it, that) with the noun they refer to.\n"
+     "2. Keep the original meaning and language. Do not add new information.\n"
+     "3. Do NOT answer the question. Output ONLY the rewritten question.\n"
+     "4. If the question is already standalone, output it unchanged."),
+    MessagesPlaceholder("history"),
+    ("human", "Follow-up question: {question}\n\nStandalone question:"),
+])
+
+ANSWER_PROMPT = ChatPromptTemplate.from_messages([
+    ("system",
+     "You answer questions using ONLY the context provided.\n\n"
+     "RULES:\n"
+     "1. Answer in the same language as the question (usually Bahasa Indonesia), clearly and concisely.\n"
+     "2. Cite the source of every claim with its label, e.g. [1] or [TABLE].\n"
+     "3. If the context does not contain the information, say exactly: \"" + NOT_FOUND + "\" "
+     "Do not guess and do not use general knowledge.\n"
+     "4. Numbers in [TABLE] are exact database results. Copy them as-is; do not recompute or round.\n"
+     "5. When the question needs a rule from the documents and data from the table, combine both explicitly.\n"
+     "6. Do not mention the words \"context\", \"chunk\", or \"passage\" in the answer."),
+    ("human", "CONTEXT:\n\n{context}\n\n---\n\nQUESTION: {question}"),
+])
+
+
+def build_context(documents: list[Document], graph: GraphResult | None) -> str:
+    """Number the retrieved chunks and append the table result, if any."""
+    blocks: list[str] = []
+    for n, doc in enumerate(documents, start=1):
+        meta = doc.metadata
+        page = f" | page {meta['page']}" if meta.get("page") else ""
+        blocks.append(f"[{n}] Source: {meta.get('source', '?')}{page} | Title: {meta.get('title', '?')}\n"
+                      f"{doc.page_content}")
+
+    if graph is not None:
+        lang = graph.language.upper()
+        if graph.ok and graph.rows:
+            blocks.append(f"[TABLE] Result of a {lang} query over the database "
+                          f"(exact values computed by the database):\n"
+                          f"Query: {graph.query}\n\n{graph.to_markdown()}")
+        elif graph.ok:
+            blocks.append(f"[TABLE] The {lang} query ran successfully but matched no rows, "
+                          f"i.e. no data meets the criteria.\nQuery: {graph.query}")
+        else:
+            blocks.append(f"[TABLE] The database query failed: {graph.error}")
+
+    return "\n\n---\n\n".join(blocks)
