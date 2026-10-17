@@ -1,0 +1,30 @@
+﻿BT7,Antena dan Propagasi,"Perkuliahan ini membahas : (1) Sistem Antenna Pemancar/Penerima yang meliputi : Jenis Antenna dan
+Elemen Antenna (Radiator/Driven Element, Parasitic Elements), Input Daya Antenna dari Saluran
+Transmisi, Metode dan teknik pencatuan Daya dari Saluran Transmisi ke Antena dan sebaliknya (Feeding
+Methode), Polarisasi Gelombang Vertikal (Radio Communication) dan Gelombang Horizontal (Radio
+Broadcasting), Parameter Antenna (Physical Length, Electrical Length, Directivity, Pollar Pattern, Gain,
+dan VSWR) Perhitungan dan Metode Pengukurannya (2) Propagasi Gelombang yang meliputi
+Karakteristik Gelombang Radio, Pengaruh Matahari terhadap Perambatan Gelombang Radio (Fenomena
+Solar Radiation, Solar Flux, Sunspot), Jenis Propagasi Gelombang Radio dan Lapisan Atmosfir (Ionosfir
+dan Troposfir),",2,3
+Electives Teknik Elektro (ETE).,,,,
+ET1,Jaringan Satelit,"Mempelajari orbit satelit : LEO (Low Earth Orbit), MEO (Medium Earth Orbit), GEO (Geostasioner
+Earth Orbit), Synchronous Orbit, teknik modulasi dan multiplexing, multiple access dalam
+komunikasi satelit, komponen-komponen sistem komunikasi satelit : stasiun bumi VSAT (Very
+Small Aperture Terminal), GPS (Global Positioning System), parameter-parameter dan analisis
+jaringan: gain, penguat daya tinggi, EIRP, terminal noise, noise figure, temperatur noise dari
+penerima, Carrier to Noise ratio (C/N0), serta perencanaan link-budget pada sistem komunikasi
+satelit beserta teknik pengukuran dan pengimplementasiannya",2,
+ET2,"Pengukur Jauh,
+Penjaluran dan
+Pengaturan","Mempelajari orbit satelit : Dasar Sistem Satelit dan Jaringanya, Regulasi dan Koordinasi Satelit,
+Subsystem dari Satelit (Antenna Sub system, Bus Subsystem, Attitude Determination and Control
+subsystems), Verifikasi Rencana Persiapan Peluncuran, Pengadaan Satelit, Peluncuran, Keandalan
+dan pengendalian Satelit (TT&C), Aspek Orbit untuk geostationary Komunikasi Satelit, operasional
+untuk Satelit Operator.",2,
+ET3,Komunikasi Bergerak,"Perkuliahan ini memberikan pengertian dan berisi teknik pelajaran sistem komunikasi bergerak
+(mobile communication), histori, dan konsep teknologi selular.",2,
+ET4,"Pengolahan Citra
+Digital","Perkuliahan ini berisi teknik pemrograman Web dari sisi Front End dan Back End serta penguatan
+security data pada bagian Web. Perkuliahan ini bertujuan agar mahasiswa dapat membuat sebuah
+project Web dasar.",2,

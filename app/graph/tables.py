@@ -84,7 +84,8 @@ def load_tables(tables_dir: Path, fk_overrides: dict[str, str] | None = None) ->
     """
     files = sorted(tables_dir.rglob("*.csv")) if tables_dir.exists() else []
     if not files:
-        raise FileNotFoundError(f"No CSV files found in {tables_dir}")
+        log.warning("No CSV files in %s — graph backend will be unavailable", tables_dir)
+        return []
 
     specs: list[TableSpec] = []
     for path in files:

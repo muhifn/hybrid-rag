@@ -66,6 +66,13 @@ class Settings(BaseSettings):
     # ---- Source data -------------------------------------------------------
     documents_dir: Path = PROJECT_ROOT / "data" / "documents"
     tables_dir: Path = PROJECT_ROOT / "data" / "tables"
+    # Chunks from the OCR pipeline (`python -m scripts.ocr_ingest`). When this
+    # file exists it is preferred over documents_dir: those chunks carry page
+    # numbers and section paths, and keep tables whole - boundaries the
+    # character splitter here cannot reproduce. Delete the file (or set
+    # USE_OCR_CHUNKS=false) to fall back to plain documents_dir loading.
+    ocr_chunks_file: Path = PROJECT_ROOT / "data" / "ocr_out" / "jsonl" / "semua-chunk.jsonl"
+    use_ocr_chunks: bool = True
     # For CSV columns that do not follow the `<table>_id` convention. JSON in .env:
     #   FK_OVERRIDES={"proyek.penanggung_jawab_id": "pegawai"}
     fk_overrides: dict[str, str] = Field(default_factory=dict)
@@ -86,12 +93,22 @@ class Settings(BaseSettings):
     max_history_turns: int = 6
     max_sessions: int = 500
 
+    # ---- Observability: LangSmith ------------------------------------------
+    # Off by default: tracing uploads prompts and retrieved document text to an
+    # external service, so it has to be an explicit choice. When on, every
+    # router decision, retrieval, generated SQL, and self-correction retry
+    # shows up as a trace tree at https://smith.langchain.com
+    langsmith_tracing: bool = False
+    langsmith_api_key: str | None = None
+    langsmith_project: str = "hybrid-rag-api"
+    langsmith_endpoint: str | None = None  # only for self-hosted LangSmith
+
     # ---- API ---------------------------------------------------------------
     admin_api_key: str | None = None  # protects /admin/* when set
     cors_origins: str = ""  # comma-separated, e.g. "http://localhost:8501"
 
     @field_validator(
-        "qdrant_path", "sqlite_path", "documents_dir", "tables_dir", mode="after"
+        "qdrant_path", "sqlite_path", "documents_dir", "tables_dir", "ocr_chunks_file", mode="after"
     )
     @classmethod
     def _resolve_relative(cls, value: Path) -> Path:
@@ -124,7 +141,8 @@ class Settings(BaseSettings):
 
     def public_dict(self) -> dict:
         """Settings safe to log or return from the API (no secrets)."""
-        hidden = {"llm_api_key", "qdrant_api_key", "neo4j_password", "admin_api_key"}
+        hidden = {"llm_api_key", "qdrant_api_key", "neo4j_password", "admin_api_key",
+                  "langsmith_api_key"}
         return {
             k: (str(v) if isinstance(v, Path) else v)
             for k, v in self.model_dump().items()

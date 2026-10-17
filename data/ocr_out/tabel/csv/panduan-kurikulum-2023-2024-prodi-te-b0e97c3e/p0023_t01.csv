@@ -1,0 +1,28 @@
+﻿BK3,Kimia,"Mata kuliah Kimia Dasar ini berisi pokok bahasan yang menjelaskan tentang sekilas mengenai
+kimia, teori atom, susunan berkala dan konfigurasi elektron, stoikiometri, ikatan kimia, asam dan
+basa, pengenalan termodinamika kimia, kesetimbangan kimia dan kinetika kimia, dasar-dasar
+kimia organik dan dasar-dasar biokimia. Melalui mata kuliah ini diharapkan mahasiswa
+mempunyai kemampuan untuk menjelaskan dasar-dasar dan sifat-sifat ilmu kimia,
+mengaplikasikan rumus-rumus kimia dalam perhitungan kimia, serta menerangkan hubungan ilmu
+kimia dengan kehidupan secara umum.",2,3
+Core Teknik Elektro (CTE),,,,
+CT1,Rangkaian dan Sinyal,"Mata kuliah Sinyal dan Sistem membahas tentang representasi sinyal dan sistem, konsep sistem
+Linear Time-Invariant (LTI) waktu kontinu, deret Fourier sinyal waktu kontinu, transformasi
+Fourier waktu kontinu dan aplikasinya, transformasi Laplace dan aplikasinya, konsep sistem LTI
+waktu diskrit, deret Fourier sinyal waktu diskrit, transformasi Fourier waktu diskrit dan
+transformasi Z.",3,4
+CT2,"Pemrograman dan
+Pemecahan Masalah
+dengan matlab.","MATLAB mempelajari sebuah pemrograman untuk pengembangan algoritma, analisis data,
+visualisasi, dan komputasi numerik. Perangkat lunak MATLAB memadukan kemampuan
+perhitungan, pencitraan, dan pemrograman dalam satu paket",2,3
+CT3,Sistem Digital,"Menjelaskan konsep dasar sistem digital dan aplikasinya. Topik yang akan dipelajari adalah Aljabar
+Boolean, gerbang logika dasar, representasi bilangan dan rangkaian aritmatika, rangkaian
+kombinasional, rangkaian sekuensial dan pengenalan tools desain berbasis VHDL",3,4
+CT4,Elektromagnetik,"Matakuliah Medan Elektromagnetik mempelajari konsep dan teori medan magnet dan medan
+listrik serta hukum-hukum tentang medan yang merupakan dasar keilmuan bidang teknik elektro.
+Proses yang terkait dengan konsep medan dan kalkulus vektor, teori medan elektrostatik dan
+potensial elektrik, arus elektrik, teori medan magnet dan induksi magnet, hukum Faraday dan
+tegangan gerak listrik (TGE), jalur transmisi dan penyesuaian impedans, persamaan Maxwell, dan
+gelombang elektromagnetik.",5,6
+Breadth Teknik Elektro (BTE),,,,

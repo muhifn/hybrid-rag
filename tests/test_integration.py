@@ -10,8 +10,9 @@ import os
 
 import pytest
 
-from app.config import PROJECT_ROOT, Settings
+from app.config import Settings
 from app.graph.tables import load_tables
+from tests.conftest import FIXTURES
 
 
 def _neo4j_settings() -> Settings:
@@ -42,7 +43,7 @@ def test_neo4j_backend_end_to_end():
     from app.graph.neo4j_store import Neo4jGraphStore, ingest_into_neo4j
 
     settings = _neo4j_settings()
-    ingest_into_neo4j(settings, load_tables(PROJECT_ROOT / "data" / "tables"))
+    ingest_into_neo4j(settings, load_tables(FIXTURES / "tables"))
     store = Neo4jGraphStore(settings)
     try:
         assert {"Pegawai", "Proyek", "Unit"} <= set(store.table_names())

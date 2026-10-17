@@ -74,16 +74,18 @@ class GraphQueryEngine:
             language=self.language, schema=store.schema_description(), examples=examples
         )
         parser = text_parser()
+        # Named so a LangSmith trace distinguishes the first attempt from each
+        # correction retry; the gap between them is the self-correction metric.
         self._first = (
             ChatPromptTemplate.from_messages([("system", "{system}"), ("human", FIRST_ATTEMPT)])
             .partial(system=system, language=self.language)
             | llm | parser
-        )
+        ).with_config(run_name=f"text_to_{self.language}")
         self._correct = (
             ChatPromptTemplate.from_messages([("system", "{system}"), ("human", CORRECTION)])
             .partial(system=system, language=self.language)
             | llm | parser
-        )
+        ).with_config(run_name=f"text_to_{self.language}_correction")
 
     def generate(self, question: str, failure: tuple[str, str] | None = None) -> str:
         if failure is None:

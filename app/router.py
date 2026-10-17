@@ -97,13 +97,16 @@ class QueryRouter:
         if use_structured_output:
             try:
                 prompt = ChatPromptTemplate.from_messages([("system", "{system}"), ("human", "{question}")])
-                self._structured = prompt.partial(system=system) | llm.with_structured_output(
-                    RouteChoice, method="json_schema"
-                )
+                self._structured = (
+                    prompt.partial(system=system)
+                    | llm.with_structured_output(RouteChoice, method="json_schema")
+                ).with_config(run_name="router_structured")
             except (NotImplementedError, ValueError, TypeError) as exc:
                 log.warning("Structured output unavailable (%s); using JSON prompt", exc)
         json_prompt = ChatPromptTemplate.from_messages([("system", "{system}"), ("human", "{question}")])
-        self._plain = json_prompt.partial(system=system + JSON_INSTRUCTION) | llm | text_parser()
+        self._plain = (
+            json_prompt.partial(system=system + JSON_INSTRUCTION) | llm | text_parser()
+        ).with_config(run_name="router_json")
 
     # ---------------------------------------------------------------- layers
     def _llm(self, question: str) -> RouteChoice | None:

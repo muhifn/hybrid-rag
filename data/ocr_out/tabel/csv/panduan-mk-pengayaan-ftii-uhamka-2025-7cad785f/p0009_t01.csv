@@ -1,0 +1,99 @@
+﻿NO.,KODE,"NAMA
+MATAKULIAH",SKS,"JENIS
+KEGIATAN",PERSYARATAN,PENGAKUAN,BUKTI KINERJA,PEDOMAN PENILAIAN,,PENILAI
+NO.,KODE,"NAMA
+MATAKULIAH",SKS,"JENIS
+KEGIATAN",PERSYARATAN,PENGAKUAN,BUKTI KINERJA,NILAI,KRITERIA,PENILAI
+1,KODE,"Berpikir Kritis dan
+Kreatif",2,Magang,"1. Mahasiswa aktif
+2. Sesuai dengan core
+bidang ilmu Teknik
+Informatika/Elektro/
+Mesin
+3. Durasi 1 semester
+4. Diketahui Ketua
+Program Studi","1. Surat
+keterangan/rekomenda
+si dari Fakultas
+2. Surat penerimaan dari
+institusi pelaksana
+3. Penilaian dari tempat
+magang (lembar nilai)","1. Laporan kegiatan
+magang
+2. Sertifikat magang
+dari institusi
+pelaksana",A,"1. Jika mendapat nilai A
+dari institui pelaksana
+2. Laporan kegiatan sesuai
+format/standar","Dosen Pengampu
+Matakuliah
+Pengayaan"
+1,KODE,"Berpikir Kritis dan
+Kreatif",2,Magang,"1. Mahasiswa aktif
+2. Sesuai dengan core
+bidang ilmu Teknik
+Informatika/Elektro/
+Mesin
+3. Durasi 1 semester
+4. Diketahui Ketua
+Program Studi","1. Surat
+keterangan/rekomenda
+si dari Fakultas
+2. Surat penerimaan dari
+institusi pelaksana
+3. Penilaian dari tempat
+magang (lembar nilai)","1. Laporan kegiatan
+magang
+2. Sertifikat magang
+dari institusi
+pelaksana",B,"1. Jika mendapat nilai B
+dari institusi pelaksana
+2. Laporan kegiatan tidak
+sesuai format/standar","Dosen Pengampu
+Matakuliah
+Pengayaan"
+1,KODE,"Berpikir Kritis dan
+Kreatif",2,"Program Kreativitas
+Mahasiswa (PKM)
+- PKM Riset
+Eksakta (PKM-
+RE)
+- PKM Riset Sosial
+Humaniora
+(PKM-RSH)
+- PKM Penerapan
+Iptek (PKM-PI)
+- PKM Video
+Gagasan
+Konstruktif
+(PKM-VGK)
+- PKM Gagasan
+Futuristik
+Tertulis (PKM-
+GFT)","1. Mahasiswa aktif
+2. Ada proposal
+kegiatan yang
+diajukan
+3. Diketahui Ketua
+Program Studi atau
+Wakil Dekan 3","Surat keterangan
+rekomendasi dari Fakultas","1. Laporan
+2. Sertifikat",A,Lulus tingkat Universitas,"Dosen Pengampu
+Matakuliah
+Pengayaan"
+1,KODE,"Berpikir Kritis dan
+Kreatif",2,"Project independent
+/Capstone Design","1. Mahasiswa aktif
+2. Proyek yang
+berkaitan dengan
+Teknik
+Informatika/Elektro/
+Mesin/ Sistem dan",Proposal proyek,"1. Produk proyek
+2. Laporan proyek",A,"Project berhubungan dengan
+bidang Teknik Informatika/
+Elektro/Mesin/Sistem dan
+Teknologi
+Informasi/Teknologi
+Rekayasa Mekatronika","Dosen Pengampu
+Matakuliah
+Pengayaan"

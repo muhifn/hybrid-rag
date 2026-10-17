@@ -1,0 +1,93 @@
+# Configuration used by `python -m scripts.ocr_ingest` for THIS project.
+#
+# Differences from config/default.yaml, and why:
+#   * xlsx_tables: false   - XLSX export needs openpyxl, which this project does
+#                            not install. CSV per table is what scripts/build_tables.py
+#                            consumes, so the spreadsheet copy adds nothing.
+#   * chunk sizes          - matched to CHUNK_SIZE/CHUNK_OVERLAP in the app's .env so
+#                            the thesis reports one chunking configuration, not two.
+#   * workers: 2           - safe here: the corpus is ~88% digital, so most pages go
+#                            through the `native` engine.
+
+ocr_engine: auto
+native_engine: native
+fallback_chain: [docling, paddle, tesseract]
+
+workers: 2
+verbose: true
+continue_on_error: true
+
+detect:
+  min_chars: 120
+  min_char_density: 0.08
+  max_garbled_ratio: 0.02
+  full_page_image_ratio: 0.65
+  treat_blank_as_empty: true
+
+preprocess:
+  dpi: 300
+  max_pixels: 40000000
+  grayscale: true
+  deskew: true
+  deskew_max_angle: 12.0
+  denoise: false
+  binarize: false
+  binarize_method: adaptive
+  contrast_stretch: true
+  auto_rotate_osd: true
+  crop_border: false
+  save_debug_images: false
+
+# Tables are the point of this corpus (curriculum, SKS, fees), so keep the
+# strongest table reconstruction the native engine offers.
+native:
+  table_strategy: auto
+  min_table_cells: 4
+  detect_headings: true
+  heading_size_ratio: 1.18
+  mark_header_footer: true
+  join_lines: true
+
+tesseract:
+  lang: ind+eng
+  psm: 3
+  oem: 3
+  detect_tables: true
+  min_word_conf: 30.0
+
+docling:
+  do_ocr: true
+  do_table_structure: true
+  table_mode: accurate
+  ocr_engine: tesseract
+  ocr_lang: [ind, eng]
+  use_vlm: false
+
+chunk:
+  target_chars: 800
+  max_chars: 1400
+  min_chars: 200
+  overlap_chars: 120
+  split_large_tables: true
+  table_rows_per_shard: 25
+  table_context_prefix: true
+  prepend_section_path: true
+  drop_noise_blocks: true
+  respect_headings: true
+
+qa:
+  min_mean_confidence: 72.0
+  max_garbage_ratio: 0.12
+  min_lexicon_ratio: 0.25
+  min_chars_per_page: 60
+  flag_irregular_tables: true
+
+output:
+  markdown: true
+  jsonl: true
+  csv_tables: true
+  xlsx_tables: false
+  qa_report: true
+  page_marker: comment
+  front_matter: true
+  combined_jsonl: true

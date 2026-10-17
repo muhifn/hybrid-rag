@@ -50,13 +50,12 @@ def test_reingest_drops_chunks_of_removed_documents(tmp_path):
     """Regression: embedded Qdrant on Windows used to resurrect deleted points."""
     import shutil
 
-    from app.config import PROJECT_ROOT
     from app.service import RAGService
-    from tests.conftest import make_settings
+    from tests.conftest import FIXTURES, make_settings
     from tests.fakes import FakeChatModel, HashingEmbeddings
 
     docs = tmp_path / "docs"
-    shutil.copytree(PROJECT_ROOT / "data" / "documents", docs)
+    shutil.copytree(FIXTURES / "documents", docs)
     svc = RAGService(make_settings(tmp_path, documents_dir=docs), llm=FakeChatModel(),
                      embeddings=HashingEmbeddings())
     try:

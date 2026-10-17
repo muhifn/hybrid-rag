@@ -1,0 +1,25 @@
+# ======================================================================
+# Engine OCR: MARKER (datalab) — markdown rapi, berbasis Surya VLM.
+# ----------------------------------------------------------------------
+#   pip install -r requirements-marker.txt
+#
+# PERINGATAN LISENSI (sebutkan di skripsi, pisahkan dari lisensi kode):
+#   * Kode Marker      : Apache-2.0 (bebas)
+#   * BOBOT MODEL      : modified AI Pubs Open RAIL-M
+#                        -> bebas untuk RISET & penggunaan pribadi
+#                        -> penggunaan komersial luas butuh lisensi berbayar
+#   Untuk skripsi (riset) ini boleh, tapi jangan sebut "sepenuhnya open"
+#   untuk pemakaian komersial.
+#
+# HARDWARE:
+#   * Butuh GPU CUDA untuk mode "balanced" (OCR penuh via Surya VLM).
+#   * Tanpa GPU: Marker butuh server llama.cpp (TIDAK ikut pip), ATAU
+#     set marker.disable_ocr=true (jalur CPU murni, halaman scan dilewati).
+#   * Untuk RTX 4050 6 GB: bisa jalan, tapi batch besar lebih baik di Kaggle.
+#
+# PyTorch dipasang terpisah sesuai versi CUDA mesin:
+#   https://pytorch.org/get-started/locally/
+# ======================================================================
+
+marker-pdf>=2.0
+# torch: pasang manual sesuai CUDA (lihat tautan di atas).

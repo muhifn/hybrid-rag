@@ -1,0 +1,16 @@
+# ======================================================================
+# Dependensi INTI ocrpipe — WAJIB.
+# Cukup paket ini untuk: deteksi halaman, ekstraksi text layer (engine
+# native), rekonstruksi tabel, chunking, keluaran Markdown/JSONL/CSV/XLSX,
+# dan QA. Engine OCR berat dipasang terpisah (lihat requirements-*.txt).
+# ======================================================================
+
+pymupdf>=1.24            # rasterisasi + ekstraksi text layer + find_tables
+pdfplumber>=0.11         # cadangan tabel tanpa garis
+pypdf>=4.0               # pembuatan PDF subset untuk engine whole-document
+opencv-python-headless>=4.9  # praproses citra (deskew, binarisasi, deteksi garis)
+numpy>=1.24
+pandas>=2.0              # jembatan DataFrame (Docling) + penanganan tabel
+openpyxl>=3.1            # ekspor XLSX multi-sheet
+pyyaml>=6.0              # berkas konfigurasi
+rapidfuzz>=3.0           # jarak edit cepat untuk CER/WER (opsional tapi disarankan)

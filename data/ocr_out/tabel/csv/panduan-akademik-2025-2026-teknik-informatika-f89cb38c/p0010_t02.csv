@@ -1,0 +1,20 @@
+﻿No,"Kode Mata
+Kuliah",Nama Matakuliah,SKS,Prasyarat
+1,03015004,Aqidah,2,Prasyarat
+2,03015010,Kalkulus,3,"Aljabar Linear dan
+Matriks"
+3,03015016,Matematika Diskrit,3,Logika Informatika
+4,03015044,Organisasi dan Arsitektur Komputer,3,"Sistem Digital dan
+Gelombang"
+5,03015019,Struktur Data,2,"Algoritma dan Dasar
+Pemrograman"
+6,03015020,Praktikum Struktur Data,1,"Algoritma dan Dasar
+Pemrograman"
+7,03015046,Komunikasi Data dan Jaringan Komputer,2,"Sistem Digital dan
+Gelombang"
+8,03015107,Sosio Informatika,2,"Sistem Digital dan
+Gelombang"
+9,03015052,Bahasa Indonesia,2,"Sistem Digital dan
+Gelombang"
+JUMLAH,,,20,"Sistem Digital dan
+Gelombang"

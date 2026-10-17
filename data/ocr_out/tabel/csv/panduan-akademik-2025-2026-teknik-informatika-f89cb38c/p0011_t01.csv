@@ -1,0 +1,23 @@
+﻿No,"Kode Mata
+Kuliah",Nama Matakuliah,SKS,Prasyarat
+1,03015005,Ibadah Akhlak,2,Prasyarat
+2,03015017,Metode Numerik,3,Kalkulus
+3,03015011,Statistika dan Probabilitas,3,"Matematika
+Diskrit"
+4,03015018,Teori Bahasa Automata dan Kompilasi,3,"Matematika
+Diskrit"
+5,03015105,Kriptografi & Keamanan Informasi,2,"Matematika
+Diskrit"
+6,03015029,Pemrograman Lanjut,2,Struktur Data
+7,03015030,Praktikum Pemrograman Lanjut,1,Struktur Data
+8,03015102,Sistem Basis Data,2,Struktur Data
+9,03015028,Praktikum Sistem Basis Data,1,Struktur Data
+10,3015045,Sistem Operasi,3,"Organisasi dan
+Arsitektur
+Komputer"
+11,03015206,Keterampilan Komunikasi (Pengayaan wajib),2,"Organisasi dan
+Arsitektur
+Komputer"
+JUMLAH,,,24,"Organisasi dan
+Arsitektur
+Komputer"

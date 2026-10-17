@@ -2,12 +2,12 @@ from __future__ import annotations
 
 import pytest
 
-from app.config import PROJECT_ROOT
 from app.graph.tables import infer_type, load_tables
 from app.ingestion import load_documents, parse_frontmatter, split_documents
+from tests.conftest import FIXTURES
 
-DOCS = PROJECT_ROOT / "data" / "documents"
-TABLES = PROJECT_ROOT / "data" / "tables"
+DOCS = FIXTURES / "documents"
+TABLES = FIXTURES / "tables"
 
 
 def test_frontmatter_is_parsed_and_stripped():

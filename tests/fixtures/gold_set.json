@@ -1,0 +1,33 @@
+[
+  {"question": "Berapa hari cuti tahunan yang menjadi hak pegawai?", "route": "VECTOR", "relevant": ["kebijakan-cuti.md"]},
+  {"question": "Apa syarat untuk mendapatkan cuti besar?", "route": "VECTOR", "relevant": ["kebijakan-cuti.md"]},
+  {"question": "Bagaimana cara mereset password akun saya?", "route": "VECTOR", "relevant": ["faq-sistem.md"]},
+  {"question": "Berapa lama log aktivitas pengguna disimpan?", "route": "VECTOR", "relevant": ["faq-sistem.md"]},
+  {"question": "Kapan jadwal pemeliharaan rutin sistem dilakukan?", "route": "VECTOR", "relevant": ["faq-sistem.md"]},
+  {"question": "Metode pengadaan apa yang dipakai untuk nilai di atas 200 juta rupiah?", "route": "VECTOR", "relevant": ["panduan-pengadaan.md"]},
+  {"question": "Dokumen apa saja yang wajib dilengkapi dalam setiap pengadaan?", "route": "VECTOR", "relevant": ["panduan-pengadaan.md"]},
+  {"question": "Apa konsekuensi dari pemecahan paket pekerjaan?", "route": "VECTOR", "relevant": ["panduan-pengadaan.md"]},
+
+  {"question": "Berapa total anggaran seluruh proyek?", "route": "GRAPH", "relevant": [],
+   "ref_sql": "SELECT SUM(anggaran) AS total FROM proyek",
+   "ref_cypher": "MATCH (p:Proyek) RETURN sum(p.anggaran) AS total"},
+  {"question": "Ada berapa proyek yang berstatus berjalan?", "route": "GRAPH", "relevant": [],
+   "ref_sql": "SELECT COUNT(*) AS jumlah FROM proyek WHERE status = 'berjalan'",
+   "ref_cypher": "MATCH (p:Proyek) WHERE p.status = 'berjalan' RETURN count(p) AS jumlah"},
+  {"question": "Siapa pegawai dengan gaji pokok tertinggi?", "route": "GRAPH", "relevant": [],
+   "ref_sql": "SELECT nama, gaji_pokok FROM pegawai ORDER BY gaji_pokok DESC LIMIT 1",
+   "ref_cypher": "MATCH (p:Pegawai) RETURN p.nama AS nama, p.gaji_pokok AS gaji_pokok ORDER BY gaji_pokok DESC LIMIT 1"},
+  {"question": "Berapa jumlah pegawai di setiap unit?", "route": "GRAPH", "relevant": [],
+   "ref_sql": "SELECT u.nama_unit, COUNT(*) AS jumlah FROM pegawai p JOIN unit u ON p.unit_id = u.unit_id GROUP BY u.nama_unit",
+   "ref_cypher": "MATCH (p:Pegawai)-[:UNIT]->(u:Unit) RETURN u.nama_unit AS nama_unit, count(p) AS jumlah"},
+  {"question": "Unit mana yang memiliki total anggaran proyek paling besar?", "route": "GRAPH", "relevant": [],
+   "ref_sql": "SELECT u.nama_unit, SUM(p.anggaran) AS total FROM proyek p JOIN unit u ON p.unit_id = u.unit_id GROUP BY u.nama_unit ORDER BY total DESC LIMIT 1",
+   "ref_cypher": "MATCH (p:Proyek)-[:UNIT]->(u:Unit) RETURN u.nama_unit AS nama_unit, sum(p.anggaran) AS total ORDER BY total DESC LIMIT 1"},
+
+  {"question": "Proyek mana saja yang wajib menggunakan tender terbuka?", "route": "HYBRID", "relevant": ["panduan-pengadaan.md"],
+   "ref_sql": "SELECT nama_proyek, anggaran FROM proyek WHERE anggaran > 200000000 ORDER BY anggaran DESC",
+   "ref_cypher": "MATCH (p:Proyek) WHERE p.anggaran > 200000000 RETURN p.nama_proyek AS nama_proyek, p.anggaran AS anggaran ORDER BY anggaran DESC"},
+  {"question": "Proyek mana yang nilainya cukup kecil sehingga bisa pengadaan langsung?", "route": "HYBRID", "relevant": ["panduan-pengadaan.md"],
+   "ref_sql": "SELECT nama_proyek, anggaran FROM proyek WHERE anggaran <= 50000000",
+   "ref_cypher": "MATCH (p:Proyek) WHERE p.anggaran <= 50000000 RETURN p.nama_proyek AS nama_proyek, p.anggaran AS anggaran"}
+]

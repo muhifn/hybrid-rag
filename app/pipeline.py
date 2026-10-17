@@ -17,15 +17,24 @@ from app.graph.base import GraphResult
 from app.graph.query_engine import GraphQueryEngine
 from app.memory import SessionStore
 from app.llm import text_parser
-from app.prompts import ANSWER_PROMPT, CONDENSE_PROMPT, NOT_FOUND, build_context
+from app.prompts import ANSWER_PROMPT, CONDENSE_PROMPT, NOT_FOUND, SMALLTALK_PROMPT, build_context
 from app.router import QueryRouter, RouteDecision
+from app.smalltalk import is_smalltalk
 from app.text_utils import filter_reasoning_stream, strip_reasoning
 from app.vectorstore import RetrieverSet
 
 log = logging.getLogger(__name__)
 
+# Route used for conversational turns, which bypass retrieval entirely.
+DIRECT = "DIRECT"
+
 EMPTY_ANSWER = ("(The model returned no answer text - its reasoning may have used up LLM_MAX_TOKENS. "
                 "Increase LLM_MAX_TOKENS or turn off thinking for this model in LM Studio.)")
+
+# Used when the model returns nothing for a greeting. A small local model
+# occasionally emits only whitespace; a silent bubble looks like a crash.
+GREETING_FALLBACK = ("Halo! Saya asisten informasi akademik. Silakan tanyakan hal seputar "
+                     "panduan akademik, kurikulum, atau mata kuliah.")
 
 
 @dataclass
@@ -40,6 +49,10 @@ class RAGResult:
     graph: GraphResult | None = None
     timings: dict[str, float] = field(default_factory=dict)
     context: str = ""
+    # True when the answer is grounded in retrieved context. False for "not
+    # found" and for conversational replies. The UI uses this to decide whether
+    # showing sources makes sense, instead of string-matching the answer text.
+    answered: bool = True
 
 
 @dataclass
@@ -50,6 +63,7 @@ class _Prepared:
     graph: GraphResult | None
     context: str
     timings: dict[str, float]
+    smalltalk: bool = False
 
 
 class HybridRAGPipeline:
@@ -70,8 +84,15 @@ class HybridRAGPipeline:
         self.max_history_turns = max_history_turns
         # Embedded Qdrant is not built for concurrent access; serialise searches.
         self._vector_lock = vector_lock or contextlib.nullcontext()
-        self._condense = CONDENSE_PROMPT | llm.bind(temperature=0.0) | text_parser()
-        self._answer = ANSWER_PROMPT | llm | StrOutputParser()
+        self._condense = (CONDENSE_PROMPT | llm.bind(temperature=0.0) | text_parser()).with_config(
+            run_name="condense")
+        self._answer = (ANSWER_PROMPT | llm | StrOutputParser()).with_config(run_name="answer")
+        # Document titles let the greeting reply name the real corpus instead of
+        # guessing at its own scope. Capped: the prompt only needs a sense of it.
+        titles = "\n".join(f"- {t}" for t in retrievers.titles[:12]) or "- (no documents loaded)"
+        self._smalltalk = (
+            SMALLTALK_PROMPT.partial(documents=titles) | llm | text_parser()
+        ).with_config(run_name="smalltalk")
 
     # --------------------------------------------------------------- stages
     def condense(self, question: str, session_id: str | None) -> str:
@@ -96,6 +117,13 @@ class HybridRAGPipeline:
     def _prepare(self, question: str, session_id: str | None, route_override: str | None,
                  retrieval_mode: str) -> _Prepared:
         timings: dict[str, float] = {}
+
+        # Conversational turns short-circuit here: no condense, no router, no
+        # search. Forcing a route means the caller wants retrieval, so honour it.
+        if route_override is None and is_smalltalk(question):
+            decision = RouteDecision(route=DIRECT, reason="conversational turn, no retrieval needed",
+                                     method="smalltalk")
+            return _Prepared(question, decision, [], None, "", timings, smalltalk=True)
 
         t0 = time.perf_counter()
         standalone = self.condense(question, session_id)
@@ -138,6 +166,8 @@ class HybridRAGPipeline:
             question=question, standalone_question=p.standalone, answer=answer,
             route=p.decision.route, route_method=p.decision.method, route_reason=p.decision.reason,
             documents=p.documents, graph=p.graph, timings=p.timings, context=p.context,
+            # A greeting is answered, but not from sources; "not found" is neither.
+            answered=self._has_context(p) and not p.smalltalk,
         )
 
     @staticmethod
@@ -149,7 +179,9 @@ class HybridRAGPipeline:
             retrieval_mode: str = "hybrid") -> RAGResult:
         p = self._prepare(question, session_id, route_override, retrieval_mode)
         t0 = time.perf_counter()
-        if self._has_context(p):
+        if p.smalltalk:
+            answer = self._smalltalk.invoke({"question": question}).strip() or GREETING_FALLBACK
+        elif self._has_context(p):
             answer = strip_reasoning(self._answer.invoke({"context": p.context, "question": p.standalone}))
             answer = answer or EMPTY_ANSWER
         else:
@@ -167,7 +199,18 @@ class HybridRAGPipeline:
 
         t0 = time.perf_counter()
         parts: list[str] = []
-        if self._has_context(p):
+        if p.smalltalk:
+            # Hold back leading whitespace: if the model only ever returns
+            # blanks, the fallback must not arrive with blanks glued in front.
+            for token in filter_reasoning_stream(self._smalltalk.stream({"question": question})):
+                if not parts and not token.strip():
+                    continue
+                parts.append(token)
+                yield "token", token
+            if not "".join(parts).strip():
+                parts = [GREETING_FALLBACK]
+                yield "token", GREETING_FALLBACK
+        elif self._has_context(p):
             raw = self._answer.stream({"context": p.context, "question": p.standalone})
             for token in filter_reasoning_stream(raw):
                 parts.append(token)

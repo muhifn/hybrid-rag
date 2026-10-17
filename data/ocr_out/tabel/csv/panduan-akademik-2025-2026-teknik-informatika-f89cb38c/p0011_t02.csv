@@ -1,0 +1,18 @@
+﻿No,"Kode Mata
+Kuliah",Nama Matakuliah,SKS,Prasyarat
+1,03015006,Muamalah,2,
+2,03015035,Grafik Komputer,3,Metode Numerik
+3,03015104,Pengantar Kecerdasan Tiruan,2,"Matematika
+Diskrit"
+4,03015047,Sistem Terdistribusi,3,"Komunikasi data
+dan jar. Komp"
+5,03015048,Pemrograman Jaringan Komputer,2,"Komunikasi data
+dan jar. Komp"
+6,03015049,Prak. Pemrograman Jaringan Komputer,1,"Komunikasi data
+dan jar. Komp"
+7,03015103,Teknologi Berorientasi Objek,2,"Pemrograman
+Lanjut"
+8,03015032,Praktikum Pemrograman Berorientasi Objek,1,"Pemrograman
+Lanjut"
+9,03015033,Pemrograman Web,2,"Pemrograman
+Lanjut"

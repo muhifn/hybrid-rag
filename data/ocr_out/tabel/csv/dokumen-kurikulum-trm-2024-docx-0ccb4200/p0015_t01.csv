@@ -1,0 +1,72 @@
+﻿No,Kode CPL,Deskripsi CPL,Unsur,Keterangan,Acuan
+1,CPL01,"Kemampuan untuk menerapkan pengetahuan
+matematika, ilmu alam dan/atau material, dan
+rekayasa untuk memperoleh pemahaman yang
+komprehensif tentang prinsip-prinsip rekayasa
+mekatronika",P,"Penciri Utama
+- 0","SN
+DIKTI,
+KKNI,
+IABEE"
+2,CPL02,"Kemampuan untuk merancang bangun
+komponen, sistem, dan/atau proses mekatronika
+untuk memenuhi kebutuhan yang diinginkan
+dalam batasan yang realistis",KK,"Penciri Utama
+- 1","KKNI,
+SN DIKTI,
+IABEE"
+3,CPL03,"Kemampuan untuk merancang dan melakukan
+eksperimen laboratorium dan/atau lapangan serta
+menganalisis dan menginterpretasikan data untuk
+memperkuat pertimbangan teknik di bidang
+mekatronika",KU,"Penciri Utama
+- 2","KKNI,
+SN DIKTI,
+IABEE"
+4,CPL04,"Kemampuan untuk mengidentifikasi,
+merumuskan, menganalisis, dan memecahkan
+masalah rekayasa Mekatronika yang kompleks.",KK,"Penciri Utama
+- 3","KKNI,
+SN
+DIKTI,
+IABEE"
+5,CPL05,"Kemampuan untuk menerapkan metode,
+keterampilan, dan peralatan teknik modern yang
+diperlukan untuk praktik keteknikan mekatronika",KK,"Penciri Utama
+-4","KKNI,
+SN
+DIKTI,
+IABEE"
+6,CPL06,"Kemampuan untuk berkomunikasi efektif secara
+lisan dan tertulis bersama rekan kerja yang
+multikultural",KU,"Penciri
+Pendukung -0","KKNI,
+SN
+DIKTI,
+IABEE"
+7,CPL07,"Kemampuan untuk merencanakan,
+menyelesaikan, dan mengevaluasi proyek pada
+bidang mekatronika di bawah batasan yang
+diberikan.",KU,"Penciri Utama
+-5","KKNI,
+SN
+DIKTI,
+IABEE"
+8,CPL08,"Kemampuan untuk bekerja dalam tim yang
+multidisiplin ilmu",KU,"Penciri
+Pendukung -1","KKNI,
+SN
+DIKTI,
+IABEE"
+9,CPL09,"Kemampuan untuk bertanggung jawab kepada
+masyarakat dan mematuhi kaidah keislaman,
+hukum, dan etika profesi dalam keprofesian
+mekatronika",S,"Penciri
+Pendukung -2","KKNI,
+SN
+DIKTI,
+CPL
+Prodi
+Uhamk
+a,
+IABEE"

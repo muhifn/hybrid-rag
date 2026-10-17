@@ -1,0 +1,22 @@
+# Konfigurasi ringan untuk mesin TANPA GPU / RAM terbatas (8 GB).
+# Pakai bila engine neural kehabisan memori atau tidak terpasang.
+#   python run_ocr.py ingest data/pdf -o keluaran --config config/ringan-cpu.yaml
+
+ocr_engine: tesseract
+fallback_chain: [tesseract]
+
+preprocess:
+  dpi: 300
+  binarize: true            # Tesseract diuntungkan binarisasi
+  binarize_method: adaptive
+  deskew: true
+  contrast_stretch: true
+
+tesseract:
+  lang: ind+eng
+  psm: 3
+  detect_tables: true
+
+chunk:
+  target_chars: 900
+  overlap_chars: 120

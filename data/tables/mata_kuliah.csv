@@ -1,0 +1,279 @@
+prodi,kode_mk,nama_mk,semester,sks,sks_teori,sks_praktikum,sks_praktek,prasyarat,kurikulum_tahun,sumber
+TRM,03015001,Pendidikan Agama Islam,,,TRM01,2,,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L465
+TRM,03055002,Pendidikan Pancasila,,,TRM05,2,,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L466
+TRM,03055005,Bahasa Inggris 1,,,TRM08,2,,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L467
+TRM,03055016,Kalkulus,,,TRM03,3,V,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L468
+TRM,03055021,Rangkaian Elektrik,,,TRM02,2,,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L469
+TRM,03055022,Praktek Rangkaian Elektrik,,,1,,,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L470
+TRM,03055023,Sistem Digital,,,TRM04,2,,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L471
+TRM,03055024,Praktek Sistem Digital,,,1,,,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L472
+TRM,03055025,Gambar Teknik,,,TRM06,1,,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L473
+TRM,03015026,Algorithma dan Dasar Pemrograman,,,TRM07,2,,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L479
+TRM,03055027,Praktikum Algorithma dan Dasar Pemrograman,,,1,,,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L480
+TRM,03055011,Aqidah,,,TRM09,2,,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L481
+TRM,03055004,Bahasa Indonesia,,,TRM12,2,,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L482
+TRM,03055017,Aljabar Linier,,,TRM10,2,V,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L483
+TRM,03055018,Fisika Mekanika,,,TRM13,2,V,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L484
+TRM,03055019,Material Teknik,,,TRM15,2,V,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L485
+TRM,03055028,Sistem Mikroprosesor,,,TRM11,2,,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L486
+TRM,03055029,Praktikum Sistem Mikroprosesor,,,1,,,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L487
+TRM,03055030,Praktek Fisika Mekanika,,,TRM13,1,V,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L488
+TRM,03055031,Struktur Data,,,TRM14,2,,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L494
+TRM,03055032,Praktikum Struktur Data,,,1,,,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L495
+TRM,03055033,Elektronika Analog,,,TRM16,2,,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L496
+TRM,03055034,Praktek Elektronika Analog,,,1,,,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L497
+TRM,03055012,Ibadah/Akhlak,,,TRM17,2,,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L498
+TRM,03055020,Statistika,,,TRM19,2,,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L499
+TRM,03055035,Antarmuka Komputer & Pengkondisi Sinyal,,,TRM18,2,,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L500
+TRM,03055036,Praktikum Antarmuka Komputer & Pengkondisi Sinyal,,,1,,,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L501
+TRM,03055037,Elemen dan Analisis Mesin,,,TRM20,2,,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L502
+TRM,03055038,Praktek Elemen dan Analisis Mesin,,,1,,,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L503
+TRM,03055039,Teknik Tenaga Listrik,,,TRM21,2,,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L504
+TRM,03055041,Statika Struktur,,,TRM22,2,V,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L510
+TRM,03055042,Pemrograman Berorientasi Objek,,,TRM23,2,,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L511
+TRM,03055043,Praktek Pemrograman Berorientasi Objek,,,1,,,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L512
+TRM,03055044,Sinyal dan Sistem,,,TRM24,2,V,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L513
+TRM,03055013,Muamalah,,,TRM25,2,,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L514
+TRM,03055003,Kewarganegaraan,,,TRM26,2,,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L515
+TRM,03055006,Bahasa Inggris 2,,,TRM30,2,,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L516
+TRM,03055045,Teknologi Sensor,,,TRM27,2,,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L517
+TRM,03055046,Praktek Teknologi Sensor,,,1,,,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L518
+TRM,03055047,Teknologi Aktuator,,,TRM28,2,,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L519
+TRM,03055048,Praktek Teknologi Aktuator,,,TRM28,1,,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L525
+TRM,03055049,GUI Berbasis Web,,,TRM29,2,,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L526
+TRM,03055050,Praktek GUI Berbasis Web,,,1,,,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L527
+TRM,03055051,Teknologi Informasi Industri,,,TRM31,2,,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L528
+TRM,03055052,Praktek Teknologi Informasi Industri,,,1,,,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L529
+TRM,03055053,Gambar Mesin,,,TRM32,1,,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L530
+TRM,03055054,Workshop Manufaktur Mesin,,,TRM33,1,,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L531
+TRM,03055014,Kemuhammadiyahan,,,TRM34,2,,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L532
+TRM,03055055,Sistem Kontrol,,,TRM35,2,,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L533
+TRM,03055056,Praktek Sistem Kontrol,,,1,,,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L534
+TRM,03055057,PLC,,,TRM36,2,,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L535
+TRM,03055058,Praktek PLC,,,TRM36,1,,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L541
+TRM,03055059,Workshop Manufaktur Elektro,,,TRM37,1,,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L542
+TRM,03055060,PCB CAD Drawing,,,TRM38,1,,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L543
+TRM,03055061,Perancangan & Simulasi Sistem Mekatronika,,V,TRM40,2,,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L544
+TRM,03055062,Praktek Perancangan & Simulasi Sitem Mekatronika,,,1,,V,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L545
+TRM,03055063,Internet of Things,,,TRM41,2,,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L546
+TRM,03055064,Praktek Internet of Things,,,1,,,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L547
+TRM,03055009,Sosiologi dan Etika Industri,,,TRM47,2,,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L548
+TRM,03055015,Islam Untuk Disiplin Ilmu,,,TRM43,2,,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L549
+TRM,03055010,Manajemen Proyek,,,TRM46,2,,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L550
+TRM,03055065,Workshop 3D printing & CNC,,,TRM42,1,,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L551
+TRM,03055066,Sistem Cerdas,,,TRM45,2,,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L557
+TRM,03055067,Praktikum Sistem Cerdas,,,1,,,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L558
+TRM,03055068,Sistem Benam Robotik,,,TRM39,2,,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L559
+TRM,03055069,Praktikum Sistem Benam Robotik,,,1,,,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L560
+TRM,03055071,Capstone Design Mekatronika,,V,TRM44,5,,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L561
+TRM,03055008,Metodologi Penelitian,,,TRM48,2,,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L562
+TRM,03055070,Praktek Kerja Lapangan,,,TRM49,6,,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L563
+TRM,03055007,Kewirausahaan,,,TRM51,3,,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L564
+TRM,03055071,Karya Penelitian Akhir,,,TRM50,4,,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L565
+TRM,03055073,Sistem SCADA,,,TRM52,2,,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L566
+TRM,03055074,Praktek Sistem SCADA,,,1,,,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L567
+TRM,03055075,GUI Sistem Berbasis Apps,,,TRM53,2,,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L573
+TRM,03055076,Praktek GUI Sistem Berbasis Apps,,,1,,,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L574
+TRM,03055077,Pengindraan Komputer,,,TRM54,2,,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L575
+TRM,03055078,Praktek Penginderaan Computer,,,1,,,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L576
+TRM,03055079,Berpikir Kritis dan Kreatif,,,TRM55,2,,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L577
+TRM,03055080,Empati dan Kecerdasan Sosial,,,2,,,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L578
+TRM,03055081,Etika Profesional,,,2,,,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L579
+TRM,03055082,Inovasi dan Pemikiran Desain,,,3,,,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L580
+TRM,03055083,Keberagaman dan Multibudaya,,,2,,,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L581
+TRM,03055084,Kepemimpinan Inklusif,,,3,,,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L582
+TRM,03055085,Ketrampilan Komunikasi,,,2,,,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L583
+TRM,03055086,Kewirausahaan,,,TRM55,2,,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L589
+TRM,03055087,Kewirausahaan Sosial,,,2,,,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L590
+TRM,03055088,Kewirausahaan Terstruktur,,,3,,,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L591
+TRM,03055089,Pemecahan Masalah,,,2,,,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L592
+TRM,03055090,Penelitian 1,,,2,,,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L593
+TRM,03055091,Penelitian 2,,,3,,,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L594
+TRM,03055092,Pengembangan Kompetensi,,,3,,,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L595
+TRM,03055093,Pengembangan Profesi,,,2,,,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L596
+TRM,03055094,Pengembangan Talenta,,,3,,,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L597
+TRM,03055095,Publikasi 1,,,2,,,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L598
+TRM,03055096,Publikasi 2,,,3,,,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L599
+TRM,03055097,Publikasi 3,,,TRM55,3,,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L606
+TRM,03055098,Strategi Negosiasi,,,2,,,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L607
+TRM,03055099,Summer Course,,,3,,,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L608
+TRM,03055079,Berpikir Kritis dan Kreatif,,2,,,,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L967
+TRM,03055080,Empati dan Kecerdasan Sosial,,2,,,,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L968
+TRM,03055081,Etika Profesional,,2,,,,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L969
+TRM,03055082,Inovasi dan Pemikiran Desain,,3,,,,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L970
+TRM,03055083,Keberagaman dan Multibudaya,,2,,,,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L971
+TRM,03055084,Kepemimpinan Inklusif,,2,,,,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L972
+TRM,03055085,Ketrampilan Komunikasi,,2,,,,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L973
+TRM,03055086,Kewirausahaan,,3,,,,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L974
+TRM,03055087,Kewirausahaan Sosial,,2,,,,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L975
+TRM,03055088,Kewirausahaan Terstruktur,,3,,,,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L976
+TRM,03055089,Pemecahan Masalah,,2,,,,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L977
+TRM,03055090,Penelitian 1,,2,,,,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L978
+TRM,03055091,Penelitian 2,,3,,,,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L979
+TRM,03055092,Pengembangan Kompetensi,,3,,,,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L980
+TRM,03055093,Pengembangan Profesi,,2,,,,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L981
+TRM,03055094,Pengembangan Talenta,,3,,,,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L982
+TRM,03055095,Publikasi 1,,2,,,,,2024,Dokumen-Kurikulum-TRM-2024.docx.md:L983
+TI,03015001,Pendidikan Agama Islam,1,2,,,,,2025-2026,Panduan Akademik 2025-2026_Teknik Informatika.md:L231
+TI,03015009,Aljabar Linear dan Matriks,1,3,,,,,2025-2026,Panduan Akademik 2025-2026_Teknik Informatika.md:L232
+TI,03015012,Logika Informatika,1,3,,,,,2025-2026,Panduan Akademik 2025-2026_Teknik Informatika.md:L233
+TI,03015021,Algoritma dan Dasar Pemrograman,1,2,,,,,2025-2026,Panduan Akademik 2025-2026_Teknik Informatika.md:L234
+TI,03015022,Praktikum Algoritma dan Dasar Pemrograman,1,1,,,,,2025-2026,Panduan Akademik 2025-2026_Teknik Informatika.md:L235
+TI,03015025,Pengantar Teknologi Informasi,1,2,,,,,2025-2026,Panduan Akademik 2025-2026_Teknik Informatika.md:L236
+TI,03015015,Sistem Digital dan Gelombang,1,2,,,,,2025-2026,Panduan Akademik 2025-2026_Teknik Informatika.md:L237
+TI,03015101,Sistem Informasi,1,2,,,,,2025-2026,Panduan Akademik 2025-2026_Teknik Informatika.md:L238
+TI,03015100,Bahasa Inggris Teknik,1,3,,,,,2025-2026,Panduan Akademik 2025-2026_Teknik Informatika.md:L239
+TI,03015004,Aqidah,1,2,,,,,2025-2026,Panduan Akademik 2025-2026_Teknik Informatika.md:L246
+TI,03015010,Kalkulus,1,3,,,,Aljabar Linear dan Matriks,2025-2026,Panduan Akademik 2025-2026_Teknik Informatika.md:L247
+TI,03015016,Matematika Diskrit,1,3,,,,Logika Informatika,2025-2026,Panduan Akademik 2025-2026_Teknik Informatika.md:L248
+TI,03015044,Organisasi dan Arsitektur Komputer,1,3,,,,Sistem Digital dan Gelombang,2025-2026,Panduan Akademik 2025-2026_Teknik Informatika.md:L249
+TI,03015019,Struktur Data,1,2,,,,Algoritma dan Dasar Pemrograman,2025-2026,Panduan Akademik 2025-2026_Teknik Informatika.md:L250
+TI,03015020,Praktikum Struktur Data,1,1,,,,Algoritma dan Dasar Pemrograman,2025-2026,Panduan Akademik 2025-2026_Teknik Informatika.md:L251
+TI,03015046,Komunikasi Data dan Jaringan Komputer,1,2,,,,Sistem Digital dan Gelombang,2025-2026,Panduan Akademik 2025-2026_Teknik Informatika.md:L252
+TI,03015107,Sosio Informatika,1,2,,,,,2025-2026,Panduan Akademik 2025-2026_Teknik Informatika.md:L253
+TI,03015052,Bahasa Indonesia,1,2,,,,,2025-2026,Panduan Akademik 2025-2026_Teknik Informatika.md:L254
+TI,03015005,Ibadah Akhlak,3,2,,,,,2025-2026,Panduan Akademik 2025-2026_Teknik Informatika.md:L267
+TI,03015017,Metode Numerik,3,3,,,,Kalkulus,2025-2026,Panduan Akademik 2025-2026_Teknik Informatika.md:L268
+TI,03015011,Statistika dan Probabilitas,3,3,,,,Matematika Diskrit,2025-2026,Panduan Akademik 2025-2026_Teknik Informatika.md:L269
+TI,03015018,Teori Bahasa Automata dan Kompilasi,3,3,,,,Matematika Diskrit,2025-2026,Panduan Akademik 2025-2026_Teknik Informatika.md:L270
+TI,03015105,Kriptografi & Keamanan Informasi,3,2,,,,,2025-2026,Panduan Akademik 2025-2026_Teknik Informatika.md:L271
+TI,03015029,Pemrograman Lanjut,3,2,,,,Struktur Data,2025-2026,Panduan Akademik 2025-2026_Teknik Informatika.md:L272
+TI,03015030,Praktikum Pemrograman Lanjut,3,1,,,,Struktur Data,2025-2026,Panduan Akademik 2025-2026_Teknik Informatika.md:L273
+TI,03015102,Sistem Basis Data,3,2,,,,,2025-2026,Panduan Akademik 2025-2026_Teknik Informatika.md:L274
+TI,03015028,Praktikum Sistem Basis Data,3,1,,,,,2025-2026,Panduan Akademik 2025-2026_Teknik Informatika.md:L275
+TI,3015045,Sistem Operasi,3,3,,,,Organisasi dan Arsitektur Komputer,2025-2026,Panduan Akademik 2025-2026_Teknik Informatika.md:L276
+TI,03015206,Keterampilan Komunikasi (Pengayaan wajib),3,2,,,,,2025-2026,Panduan Akademik 2025-2026_Teknik Informatika.md:L277
+TI,03015006,Muamalah,3,2,,,,,2025-2026,Panduan Akademik 2025-2026_Teknik Informatika.md:L284
+TI,03015035,Grafik Komputer,3,3,,,,Metode Numerik,2025-2026,Panduan Akademik 2025-2026_Teknik Informatika.md:L285
+TI,03015104,Pengantar Kecerdasan Tiruan,3,2,,,,Matematika Diskrit,2025-2026,Panduan Akademik 2025-2026_Teknik Informatika.md:L286
+TI,03015047,Sistem Terdistribusi,3,3,,,,Komunikasi data dan jar. Komp,2025-2026,Panduan Akademik 2025-2026_Teknik Informatika.md:L287
+TI,03015048,Pemrograman Jaringan Komputer,3,2,,,,Komunikasi data dan jar. Komp,2025-2026,Panduan Akademik 2025-2026_Teknik Informatika.md:L288
+TI,03015049,Prak. Pemrograman Jaringan Komputer,3,1,,,,Komunikasi data dan jar. Komp,2025-2026,Panduan Akademik 2025-2026_Teknik Informatika.md:L289
+TI,03015103,Teknologi Berorientasi Objek,3,2,,,,Pemrograman Lanjut,2025-2026,Panduan Akademik 2025-2026_Teknik Informatika.md:L290
+TI,03015032,Praktikum Pemrograman Berorientasi Objek,3,1,,,,Pemrograman Lanjut,2025-2026,Panduan Akademik 2025-2026_Teknik Informatika.md:L291
+TI,03015033,Pemrograman Web,3,2,,,,Pemrograman Lanjut,2025-2026,Panduan Akademik 2025-2026_Teknik Informatika.md:L292
+TI,03015034,Praktikum Pemrograman Web,3,1,,,,Pemrograman Lanjut,2025-2026,Panduan Akademik 2025-2026_Teknik Informatika.md:L302
+TI,03015038,Rekayasa Perangkat Lunak,3,3,,,,Sistem Informasi,2025-2026,Panduan Akademik 2025-2026_Teknik Informatika.md:L303
+TI,03015109,Praktikum Rekayasa Perangkat Lunak,3,1,,,,Sistem Informasi,2025-2026,Panduan Akademik 2025-2026_Teknik Informatika.md:L304
+TI,03015002,Pancasila dan Kewarganegaraan,3,3,,,,,2025-2026,Panduan Akademik 2025-2026_Teknik Informatika.md:L311
+TI,03015007,Kemuhammadiyahan,3,2,,,,,2025-2026,Panduan Akademik 2025-2026_Teknik Informatika.md:L312
+TI,03015057,Kewirausahaan,3,3,,,,,2025-2026,Panduan Akademik 2025-2026_Teknik Informatika.md:L313
+TI,03015055,Manajemen Proyek,3,2,,,,,2025-2026,Panduan Akademik 2025-2026_Teknik Informatika.md:L314
+TI,03015056,Etika Profesi Informatika,3,2,,,,,2025-2026,Panduan Akademik 2025-2026_Teknik Informatika.md:L315
+TI,03015043,Pemodelan dan Simulasi,3,2,,,,Metode Numerik,2025-2026,Panduan Akademik 2025-2026_Teknik Informatika.md:L316
+TI,03015008,Islam Untuk Disiplin Ilmu,3,2,,,,,2025-2026,Panduan Akademik 2025-2026_Teknik Informatika.md:L325
+TI,03015106,Desain Interaksi,3,3,,,,RPL,2025-2026,Panduan Akademik 2025-2026_Teknik Informatika.md:L326
+TI,03015024,Riset Teknologi Informasi,3,2,,,,Bahasa Indonesia,2025-2026,Panduan Akademik 2025-2026_Teknik Informatika.md:L327
+TI,03015059,Praktik Kerja,3,2,,,,,2025-2026,Panduan Akademik 2025-2026_Teknik Informatika.md:L328
+TI,03015057,Implementasi Proyek TI,3,3,,,,Manajemen Proyek,2025-2026,Panduan Akademik 2025-2026_Teknik Informatika.md:L329
+TI,03015058,Seminar Proposal,3,2,,,,Riset Teknologi Informasi,2025-2026,Panduan Akademik 2025-2026_Teknik Informatika.md:L346
+TI,03015060,Skripsi,3,6,,,,"Nilai D maksimal 1, sudah lulus semua mata kuliah wajib dan peminatan",2025-2026,Panduan Akademik 2025-2026_Teknik Informatika.md:L356
+TE,03025125,Berpikir Kritis dan Kreatif (Kompetensi),8,2,,,,,2023-2024,Panduan Kurikulum 2023-2024 prodi TE.md:L859
+TE,03025126,Empati dan Kecerdasan Sosial,8,2,,,,,2023-2024,Panduan Kurikulum 2023-2024 prodi TE.md:L860
+TE,03025127,Etika Profesional (Kompetensi),8,2,,,,,2023-2024,Panduan Kurikulum 2023-2024 prodi TE.md:L861
+TE,03025128,Inovasi dan Pemikiran Desain,8,3,,,,,2023-2024,Panduan Kurikulum 2023-2024 prodi TE.md:L862
+TE,03025129,Keberagaman dan Multibudaya,8,2,,,,,2023-2024,Panduan Kurikulum 2023-2024 prodi TE.md:L863
+TE,03025130,Kepemimpinan Inklusif,8,2,,,,,2023-2024,Panduan Kurikulum 2023-2024 prodi TE.md:L864
+TE,03025131,Kerja Praktik,8,2,,,,,2023-2024,Panduan Kurikulum 2023-2024 prodi TE.md:L865
+TE,03025132,Ketrampilan Komunikasi (Kompetensi),8,2,,,,,2023-2024,Panduan Kurikulum 2023-2024 prodi TE.md:L866
+TE,03025145,Summer Course,,,,,,,2023-2024,Panduan Kurikulum 2023-2024 prodi TE.md:L987
+TE,03025129,Keberagaman dan Multibudaya,,,,,,,2023-2024,Panduan Kurikulum 2023-2024 prodi TE.md:L992
+TE,03025141,Publikasi 1,,,,,,,2023-2024,Panduan Kurikulum 2023-2024 prodi TE.md:L997
+TE,03025140,Pengembangan Talenta,,,,,,,2023-2024,Panduan Kurikulum 2023-2024 prodi TE.md:L1067
+TE,03025140,Pengembangan Talenta,,,,,,,2023-2024,Panduan Kurikulum 2023-2024 prodi TE.md:L1114
+TE,03025125,Berpikir Kritis dan Kreatif (Kompetensi),,,,,,,2023-2024,Panduan Kurikulum 2023-2024 prodi TE.md:L1118
+TE,03025135,Pemecahan Masalah (Kompetensi),,,,,,,2023-2024,Panduan Kurikulum 2023-2024 prodi TE.md:L1123
+TE,03025132,Kewirausahaan,,,,,,,2023-2024,Panduan Kurikulum 2023-2024 prodi TE.md:L1138
+TE,03025125,Berpikir Kritis dan Kreatif (Kompetensi),,,,,,,2023-2024,Panduan Kurikulum 2023-2024 prodi TE.md:L1141
+TE,03025131,Ketampilan Komunikasi (Kompetensi),,,,,,,2023-2024,Panduan Kurikulum 2023-2024 prodi TE.md:L1144
+TM,03035092,Aqidah,,2,,,,,2026-2027,TM-Panduan Akademik-2026-2027.md:L469
+TM,03035261,Ibadah-Akhlaq,,2,,,,,2026-2027,TM-Panduan Akademik-2026-2027.md:L470
+TM,03035262,Mu’amalah,,2,,,,,2026-2027,TM-Panduan Akademik-2026-2027.md:L471
+TM,03035095,Kemuhammadiyahan,,2,,,,,2026-2027,TM-Panduan Akademik-2026-2027.md:L472
+TM,03035263,Islam Untuk Disiplin Ilmu,,2,,,,,2026-2027,TM-Panduan Akademik-2026-2027.md:L473
+TM,03035024,Bahasa Indonesia,,2,,,,,2026-2027,TM-Panduan Akademik-2026-2027.md:L475
+TM,03035044,Bahasa Inggris 2,,2,,,,,2026-2027,TM-Panduan Akademik-2026-2027.md:L476
+TM,03035200,Pancasila dan Kewarganegaraan,,3,,,,,2026-2027,TM-Panduan Akademik-2026-2027.md:L477
+TM,03035204,Biologi,,3,,,,,2026-2027,TM-Panduan Akademik-2026-2027.md:L489
+TM,03035205,Fisika 1,,3,,,,,2026-2027,TM-Panduan Akademik-2026-2027.md:L490
+TM,03035206,Fisika 2,,2,,,,,2026-2027,TM-Panduan Akademik-2026-2027.md:L491
+TM,03035208,Praktikum Fisika,,1,,,,,2026-2027,TM-Panduan Akademik-2026-2027.md:L492
+TM,03035005,Kalkulus 2,,3,,,,,2026-2027,TM-Panduan Akademik-2026-2027.md:L493
+TM,03035207,Fisika 3,,2,,,,,2026-2027,TM-Panduan Akademik-2026-2027.md:L494
+TM,03035223,Statistika dan Probabilitas,,3,,,,,2026-2027,TM-Panduan Akademik-2026-2027.md:L495
+TM,03035224,Matematika 1,,4,,,,,2026-2027,TM-Panduan Akademik-2026-2027.md:L496
+TM,03035225,Matematika 2,,4,,,,,2026-2027,TM-Panduan Akademik-2026-2027.md:L497
+TM,03035035,Pengantar Teknik Mesin,,2,,,,,2026-2027,TM-Panduan Akademik-2026-2027.md:L499
+TM,03035222,Gambar Mesin,,2,,,,,2026-2027,TM-Panduan Akademik-2026-2027.md:L500
+TM,03035227,Material Teknik 1,,2,,,,,2026-2027,TM-Panduan Akademik-2026-2027.md:L501
+TM,03035213,Proses Manufaktur 1,,2,,,,,2026-2027,TM-Panduan Akademik-2026-2027.md:L502
+TM,03035019,Statika Struktur,,2,,,,,2026-2027,TM-Panduan Akademik-2026-2027.md:L503
+TM,03035100,Kinematika Dinamika 1,,2,,,,,2026-2027,TM-Panduan Akademik-2026-2027.md:L504
+TM,03035107,Mekanika Fluida 1,,2,,,,,2026-2027,TM-Panduan Akademik-2026-2027.md:L505
+TM,03035228,Material Teknik 2,,2,,,,,2026-2027,TM-Panduan Akademik-2026-2027.md:L506
+TM,03035229,Praktikum Material Teknik,,1,,,,,2026-2027,TM-Panduan Akademik-2026-2027.md:L507
+TM,03035202,Termodinamika 1,,2,,,,,2026-2027,TM-Panduan Akademik-2026-2027.md:L518
+TM,03035023,Elemen Mesin 1,,2,,,,,2026-2027,TM-Panduan Akademik-2026-2027.md:L519
+TM,03035036,Konsep Desain,,2,,,,,2026-2027,TM-Panduan Akademik-2026-2027.md:L520
+TM,03035028,Getaran Mekanik,,2,,,,,2026-2027,TM-Panduan Akademik-2026-2027.md:L521
+TM,03035210,Kinematika Dinamika 2,,2,,,,,2026-2027,TM-Panduan Akademik-2026-2027.md:L522
+TM,03035211,Mekanika Fluida 2,,2,,,,,2026-2027,TM-Panduan Akademik-2026-2027.md:L523
+TM,03035020,Mekanika Kekuatan Material,,2,,,,,2026-2027,TM-Panduan Akademik-2026-2027.md:L524
+TM,03035048,Praktikum Fenomena Mesin,,1,,,,,2026-2027,TM-Panduan Akademik-2026-2027.md:L525
+TM,03035215,Praktikum Proses Manufaktur,,1,,,,,2026-2027,TM-Panduan Akademik-2026-2027.md:L526
+TM,03035041,Teknik Tenaga Listrik,,2,,,,,2026-2027,TM-Panduan Akademik-2026-2027.md:L527
+TM,03035209,Termodinamika 2,,2,,,,,2026-2027,TM-Panduan Akademik-2026-2027.md:L528
+TM,03035024,Elemen Mesin 2,,2,,,,,2026-2027,TM-Panduan Akademik-2026-2027.md:L529
+TM,03035226,"K3L (Keamanan, Keselamatan, Kesehatan Kerja dan Lingkungan)",,2,,,,,2026-2027,TM-Panduan Akademik-2026-2027.md:L530
+TM,03035060,Manajemen Proyek,,2,,,,,2026-2027,TM-Panduan Akademik-2026-2027.md:L531
+TM,03035216,Perpindahan Kalor dan Masa,,3,,,,,2026-2027,TM-Panduan Akademik-2026-2027.md:L532
+TM,03035260,Metrologi Industri dan Kontrol Kualitas,,2,,,,,2026-2027,TM-Panduan Akademik-2026-2027.md:L533
+TM,03035220,Mesin Konversi Energi,,3,,,,,2026-2027,TM-Panduan Akademik-2026-2027.md:L534
+TM,03035049,Praktikum Prestasi Mesin,,1,,,,,2026-2027,TM-Panduan Akademik-2026-2027.md:L535
+TM,03035219,Praktikum Teknik Tenaga Listrik,,1,,,,,2026-2027,TM-Panduan Akademik-2026-2027.md:L536
+TM,03035039,Tribologi dan Perawatan Mesin,,2,,,,,2026-2027,TM-Panduan Akademik-2026-2027.md:L549
+TM,03035217,Sosioteknologi,,2,,,,,2026-2027,TM-Panduan Akademik-2026-2027.md:L550
+TM,03035033,Teknik Kendali,,2,,,,,2026-2027,TM-Panduan Akademik-2026-2027.md:L551
+TM,03035034,Mekatronika,,2,,,,,2026-2027,TM-Panduan Akademik-2026-2027.md:L552
+TM,03035221,Tugas Perancangan,,2,,,,,2026-2027,TM-Panduan Akademik-2026-2027.md:L553
+TM,03035054,Kerja Praktik (KP),,1,,,,,2026-2027,TM-Panduan Akademik-2026-2027.md:L554
+TM,03035055,Seminar,,1,,,,,2026-2027,TM-Panduan Akademik-2026-2027.md:L555
+TM,03035056,Skripsi,,5,,,,,2026-2027,TM-Panduan Akademik-2026-2027.md:L556
+TM,03035231,Energy Storage,6,2,,,,,2026-2027,TM-Panduan Akademik-2026-2027.md:L575
+TM,03035077,Pompa & Kompresor,6,2,,,,,2026-2027,TM-Panduan Akademik-2026-2027.md:L576
+TM,03035232,Turbine,6,2,,,,,2026-2027,TM-Panduan Akademik-2026-2027.md:L577
+TM,03035233,"HVAC [Heating, Ventilating, and Air Conditioning]",6,2,,,,,2026-2027,TM-Panduan Akademik-2026-2027.md:L578
+TM,03035234,Energi Baru dan Terbarukan,6,2,,,,,2026-2027,TM-Panduan Akademik-2026-2027.md:L579
+TM,03035235,Internal Combustion Engine,6,2,,,,,2026-2027,TM-Panduan Akademik-2026-2027.md:L580
+TM,03035236,Bioenergi,6,2,,,,,2026-2027,TM-Panduan Akademik-2026-2027.md:L581
+TM,03035237,Waste to Energy,6,2,,,,,2026-2027,TM-Panduan Akademik-2026-2027.md:L582
+TM,03035238,Material Energi,6,2,,,,,2026-2027,TM-Panduan Akademik-2026-2027.md:L583
+TM,03035239,Pemanen Energi Getaran,6,2,,,,,2026-2027,TM-Panduan Akademik-2026-2027.md:L584
+TM,03035068,Ergonomik,6,2,,,,,2026-2027,TM-Panduan Akademik-2026-2027.md:L586
+TM,03035264,Sistem Produksi,6,2,,,,,2026-2027,TM-Panduan Akademik-2026-2027.md:L587
+TM,03035058,Otomasi Industri,6,2,,,,,2026-2027,TM-Panduan Akademik-2026-2027.md:L588
+TM,03035087,Sistem Kontrol Produksi,6,2,,,,,2026-2027,TM-Panduan Akademik-2026-2027.md:L589
+TM,03035237,Sustainable Manufacturing,6,2,,,,,2026-2027,TM-Panduan Akademik-2026-2027.md:L590
+TM,03035097,Rapid Prototyping & 3D Printing,6,2,,,,,2026-2027,TM-Panduan Akademik-2026-2027.md:L591
+TM,03035098,Kecerdasan Tiruan & Pembelajaran Mesin,6,2,,,,,2026-2027,TM-Panduan Akademik-2026-2027.md:L592
+TM,03035238,IIoT(Industrial Internet of Things),,2,,,,,2026-2027,TM-Panduan Akademik-2026-2027.md:L605
+TM,03035250,CAD/CAM/CAE,,2,,,,,2026-2027,TM-Panduan Akademik-2026-2027.md:L606
+TM,03035070,Teknik Pengelasan,,2,,,,,2026-2027,TM-Panduan Akademik-2026-2027.md:L608
+TM,03035240,Teknik Pembentukan dan Metalurgi Serbuk,,2,,,,,2026-2027,TM-Panduan Akademik-2026-2027.md:L609
+TM,03035072,Analisis Kegagalan & Mekanika Perpatahan,,2,,,,,2026-2027,TM-Panduan Akademik-2026-2027.md:L610
+TM,03035241,Korosi,,2,,,,,2026-2027,TM-Panduan Akademik-2026-2027.md:L611
+TM,03035242,Komposit & Polimer,,2,,,,,2026-2027,TM-Panduan Akademik-2026-2027.md:L612
+TM,03035243,Perlakuan Panas & Rekayasa. Permukaan,,2,,,,,2026-2027,TM-Panduan Akademik-2026-2027.md:L613
+TM,03035244,Nano Material,,2,,,,,2026-2027,TM-Panduan Akademik-2026-2027.md:L614
+TM,03035245,Material lanjut,,2,,,,,2026-2027,TM-Panduan Akademik-2026-2027.md:L615
+TM,03035246,Biomaterial,,2,,,,,2026-2027,TM-Panduan Akademik-2026-2027.md:L616
+TM,03035247,Teknik Pelapisan,,2,,,,,2026-2027,TM-Panduan Akademik-2026-2027.md:L617
+TM,03035251,Sistem Pemipaan,,2,,,,,2026-2027,TM-Panduan Akademik-2026-2027.md:L619
+TM,03035252,Sistem Penumatik & Hidrolik,,2,,,,,2026-2027,TM-Panduan Akademik-2026-2027.md:L620
+TM,03035253,Pesawat Angkat dan Angkut,,2,,,,,2026-2027,TM-Panduan Akademik-2026-2027.md:L621
+TM,03035254,Metode Elemen Hingga,,2,,,,,2026-2027,TM-Panduan Akademik-2026-2027.md:L622
+TM,03035255,Robotika (Kinematika Robot),,2,,,,,2026-2027,TM-Panduan Akademik-2026-2027.md:L623
+TM,03035257,Sistem Instalasi Mekanikal,5,2,,,,,2026-2027,TM-Panduan Akademik-2026-2027.md:L642
+TM,03035065,Optimasi Desain,5,2,,,,,2026-2027,TM-Panduan Akademik-2026-2027.md:L643
+TM,03035258,Aerodinamika,5,2,,,,,2026-2027,TM-Panduan Akademik-2026-2027.md:L644
+TM,03035259,Pengembangan Produk,5,2,,,,,2026-2027,TM-Panduan Akademik-2026-2027.md:L645

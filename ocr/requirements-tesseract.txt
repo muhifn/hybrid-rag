@@ -1,0 +1,14 @@
+# ======================================================================
+# Engine OCR: TESSERACT (jaring pengaman, CPU-only, ringan)
+# ----------------------------------------------------------------------
+# Pasang SETELAH requirements.txt:  pip install -r requirements-tesseract.txt
+#
+# Ini HANYA binding Python. Mesin Tesseract-nya dipasang terpisah:
+#   Windows : installer UB-Mannheim + data bahasa 'ind'
+#             https://github.com/UB-Mannheim/tesseract/wiki
+#   Linux   : sudo apt install tesseract-ocr tesseract-ocr-ind
+#   Kaggle  : !apt-get -qq install tesseract-ocr tesseract-ocr-ind
+# Lihat docs/INSTALL-WINDOWS.md untuk langkah lengkap.
+# ======================================================================
+
+pytesseract>=0.3.10

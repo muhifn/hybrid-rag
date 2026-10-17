@@ -1,0 +1,22 @@
+# ======================================================================
+# Engine OCR: DOCLING (IBM) — PREFERENSI UTAMA untuk tabel.
+# ----------------------------------------------------------------------
+# Lisensi MIT menyeluruh (kode + bobot model) — tidak ada batasan
+# penggunaan yang perlu dibahas khusus di skripsi.
+#
+#   pip install -r requirements-docling.txt
+#
+# Catatan:
+#  * Paket `docling` kini meta-package tipis; kodenya di `docling-slim`,
+#    terpasang otomatis. `import docling...` tetap sama.
+#  * OCR default Docling = OcrAutoOptions. ocrpipe meng-override ke
+#    Tesseract (ind+eng) demi reproduktibilitas; jadi Tesseract tetap perlu
+#    dipasang, ATAU ubah config `docling.ocr_engine: easyocr`.
+#  * TableFormer mode ACCURATE (default ocrpipe) lebih akurat, lebih lambat.
+# ======================================================================
+
+docling>=2.0
+# Opsi OCR Docling — pilih SALAH SATU jalur:
+#   (a) Tesseract  : pasang biner + pytesseract (lihat requirements-tesseract.txt)
+#   (b) EasyOCR    : uncomment baris di bawah dan set docling.ocr_engine=easyocr
+# easyocr>=1.7

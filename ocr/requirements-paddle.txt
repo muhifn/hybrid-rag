@@ -1,0 +1,26 @@
+# ======================================================================
+# Engine OCR: PADDLEOCR PP-StructureV3 — pengenalan struktur tabel kuat.
+# ----------------------------------------------------------------------
+# PERHATIAN: sejak PaddleOCR 3.5, library dan MESIN INFERENSI dipasang
+# TERPISAH, dan dalam urutan yang benar:
+#
+#   1) pip install "paddleocr[doc-parser]"
+#   2) pasang PaddlePaddle (pilih salah satu):
+#      CPU   : pip install paddlepaddle==3.2.0 \
+#                -i https://www.paddlepaddle.org.cn/packages/stable/cpu/
+#      CUDA 12.6 (mis. RTX 4050):
+#              pip install paddlepaddle-gpu==3.2.0 \
+#                -i https://www.paddlepaddle.org.cn/packages/stable/cu126/
+#
+# Verifikasi:  python -c "import paddle; print(paddle.__version__)"
+#
+# VRAM: konfigurasi DEFAULT PP-StructureV3 bisa >16 GB. ocrpipe sudah
+# mematikan modul formula/chart/seal dan memakai model mobile agar muat di
+# GPU 6 GB. Bila tetap kehabisan memori: jalankan dengan --device cpu,
+# atau pindah ke Kaggle (lihat notebooks/).
+#
+# Baris di bawah TIDAK memasang mesin inferensi (lihat langkah 2 di atas).
+# ======================================================================
+
+paddleocr[doc-parser]>=3.5
+# paddlepaddle / paddlepaddle-gpu: pasang manual dengan index-url di atas.

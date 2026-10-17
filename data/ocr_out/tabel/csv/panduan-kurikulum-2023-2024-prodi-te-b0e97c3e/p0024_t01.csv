@@ -1,0 +1,29 @@
+﻿BT1,Elektronika,"Mata kuliah Elektronika membahas tentang proses analisis, simulasi, perancangan dan deskripsi aplikasi
+komponen Dioda Semikonduktor, Bipolar Junction Transistor, Field-Effect Transistor, Respon frekuensi
+rangkaian transistor, Power Amplifier, Rangkaian Differential Amplifier, Rangkaian Feedback dan
+Oscillator,",4,5
+BT2,"Sistem Instrumentasi
+dan Pengukuran","Mata kuliah ini merupakan mata kuliah pilihan untuk kelompok keahlian instrumentasi dan komputasi
+yang akan mempelajari tentang sistem pengukuran, sensor, tranducer dan actutor serta prinsipnya;
+Pengkondisi sinyal serta jenis-jenisnya dalam berbagai alat ukur; DAC dan ADC serta jenis-jenisnya;
+Op-Amp dan prinsip kerjanya; Pencacah Elektronik: Display LCD dan Display Seven Segmen; Sistem
+akuisis data, sistem telemetri.",3,4
+BT3,Teknik Tenaga Listrik,"Mata kuliah ini membahas tentang proses pembangkitan, jenis-jenis pusat pembangkit, instalasi elektrik
+dari pusat pembangkit, masalah utama dalam pembangkitan tenaga elektrik, sistem inter-koneksi, 2proses
+penyediaan tenaga elektrik, dan mutu tenaga elektrik",3,4
+BT4,"Pengolahan Sinyal
+Digital","Dalam mata kuliah ini akan dibahas konsep Dasar Pengolahan Sinyal Digital, FIR Filter, Respon
+Frekuensi pada FIR Filter, Penggunaan Transformasi z pada Analisis FIR Filter, Perancangan FIR Filter
+dengan Teknik Windowing, IIR Filter, Analisa Spektrum Frekuensi.",3,4
+BT5,Sistem Mikroprosesor,"Pada perkuliahan ini dibahas : Perkembangan dan teknologi mikroprosessor/ mikro komputer dan mikro
+kontroller, Dasar-dasar mikroprosessor memori : RAM, ROM, DRAM, SRAM, EPROM, peta memori
+dan sistem pengalamatan, sistem input output seri dan paralel. Arsitektur mikroprosessor, konfigurasi,
+mode pengalamatan dan mikroprosesor keluarga intel, instruksi dan bahasa pemograman mikroprosessor,
+komponen interfacing mikroprosessordan aplikasi mikrokontroller.",2,3
+BT6,Sistem Kendali,"Materi pembelajaran Kendali yang berkaitan dengan : (a) matematika dalam analisis sistem kendali
+continous (transformasi laplace), (b) Konsep dan blok diagram sistem kendali terbuka, sistem kendali
+tertutup, grafik aliran sinyal, (c) Tanggapan sistem orde tunggal dan orde jamak, (d) Stabilitas sistem,
+dengan metode akar-akar persamaan, Routh-Hurwitz, Root Locus, (e) Konsep kompensator dalam sistem
+kendali, kompensator PID, dan implementasi kompensator PID menggunakan komponen basis
+Operational Amplifier, (f) Masalah penolakan gangguan dalam sistem kendali, (g) Beberapa aplikasi
+sistem kendali continous.",3,4

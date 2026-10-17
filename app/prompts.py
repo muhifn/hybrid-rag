@@ -22,6 +22,27 @@ from app.graph.base import GraphResult
 
 NOT_FOUND = "Informasi tersebut tidak ditemukan dalam basis pengetahuan."
 
+# Greetings and other conversational turns must NOT be routed into retrieval.
+# "Halo" has no answer in any document, so the pipeline would search, find
+# nothing relevant, and reply with NOT_FOUND - which reads as a broken bot.
+# This prompt answers directly instead, and uses the real document titles so
+# the bot states what it can actually help with rather than inventing scope.
+SMALLTALK_PROMPT = ChatPromptTemplate.from_messages([
+    ("system",
+     "You are an academic information assistant for Universitas Muhammadiyah Prof. Dr. Hamka "
+     "(UHAMKA). You answer questions about the academic documents you have been given.\n\n"
+     "The user has just greeted you or asked something conversational rather than asking about "
+     "the documents. Reply briefly and warmly (at most 2 short sentences), in the SAME language "
+     "as the user (usually Bahasa Indonesia), and invite them to ask about the documents.\n\n"
+     "Documents available to you:\n{documents}\n\n"
+     "Rules:\n"
+     "1. Do NOT invent facts about the documents and do NOT list them all.\n"
+     "2. Do NOT mention retrieval, vectors, databases, context, or how you work internally.\n"
+     "3. If asked who or what you are, say you are an academic information assistant.\n"
+     "4. Keep it short. Do not add citations - there is nothing to cite here."),
+    ("human", "{question}"),
+])
+
 CONDENSE_PROMPT = ChatPromptTemplate.from_messages([
     ("system",
      "Rewrite the user's follow-up question as a STANDALONE question that can be "

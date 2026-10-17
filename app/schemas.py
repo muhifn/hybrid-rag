@@ -8,6 +8,8 @@ from pydantic import BaseModel, Field
 
 from app.pipeline import RAGResult
 
+# Routes a caller may force. DIRECT is not here on purpose: it is decided by
+# the smalltalk check, not something a client asks for.
 Route = Literal["VECTOR", "GRAPH", "HYBRID"]
 RetrievalMode = Literal["dense", "bm25", "hybrid"]
 
@@ -25,6 +27,10 @@ class SourceOut(BaseModel):
     source: str
     title: str
     page: int | None = None
+    # Both come from the OCR pipeline's chunk metadata: `section` is the
+    # chapter trail ("BAB II > Registrasi"), `content_type` marks table chunks.
+    section: str | None = None
+    content_type: str = "text"
     chunk_id: str | None = None
     snippet: str
 
@@ -47,6 +53,10 @@ class ChatResponse(BaseModel):
     route: str
     route_method: str
     route_reason: str
+    answered: bool = Field(default=True,
+                           description="True when the answer came from retrieved sources. "
+                                       "False for greetings and for 'not found' replies, where "
+                                       "showing sources would be misleading.")
     sources: list[SourceOut]
     graph: GraphOut | None
     timings: dict[str, float]
@@ -59,6 +69,8 @@ class ChatResponse(BaseModel):
                 source=d.metadata.get("source", "?"),
                 title=d.metadata.get("title", "?"),
                 page=d.metadata.get("page"),
+                section=d.metadata.get("section"),
+                content_type=d.metadata.get("content_type", "text"),
                 chunk_id=d.metadata.get("chunk_id"),
                 snippet=" ".join(d.page_content.split())[:280],
             )
@@ -73,7 +85,7 @@ class ChatResponse(BaseModel):
             session_id=session_id, question=result.question,
             standalone_question=result.standalone_question, answer=result.answer,
             route=result.route, route_method=result.route_method, route_reason=result.route_reason,
-            sources=sources, graph=graph,
+            answered=result.answered, sources=sources, graph=graph,
             timings={k: round(v, 3) for k, v in result.timings.items()},
         )
 
@@ -99,3 +111,4 @@ class IngestResponse(BaseModel):
     table_rows: int
     graph_backend: str
     seconds: float
+    source: str = "documents"

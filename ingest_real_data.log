@@ -1,0 +1,5 @@
+2026-10-17 22:10:55,215 INFO    app.llm: Using embedding model text-embedding-bge-m3 served at http://localhost:1234/v1/embeddings
+2026-10-17 22:10:58,223 INFO    httpx2: HTTP Request: POST http://localhost:1234/v1/embeddings "HTTP/1.1 200 OK"
+
+Qdrant storage is locked by another process (is the API running?).
+Use `POST /admin/ingest` on the running API, or stop it first.

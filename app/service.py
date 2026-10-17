@@ -17,6 +17,7 @@ from app.llm import build_chat_model, build_embeddings, embedding_dimension, lis
 from app.memory import ReadWriteLock, SessionStore
 from app.pipeline import HybridRAGPipeline, RAGResult
 from app.router import QueryRouter
+from app.tracing import configure_tracing, tracing_status
 from app.vectorstore import RetrieverSet, VectorIndex, build_retrievers
 
 log = logging.getLogger(__name__)
@@ -30,6 +31,9 @@ class RAGService:
     def __init__(self, settings: Settings, llm: BaseChatModel | None = None,
                  embeddings: Embeddings | None = None):
         self.settings = settings
+        # Before any chain is built: LangChain reads the tracing env vars when
+        # a chain runs, so this has to happen first to catch the whole session.
+        self.tracing_enabled = configure_tracing(settings)
         self.embeddings = embeddings or build_embeddings(settings)
         self.dimension = embedding_dimension(self.embeddings)
         log.info("Embedding model ready: %s (dim=%d)", settings.embedding_model, self.dimension)
@@ -139,6 +143,7 @@ class RAGService:
                                       else self.settings.llm_base_url)},
             "vector_store": {"mode": self.settings.qdrant_mode, "collection": self.settings.qdrant_collection,
                              "chunks": self.index.count()},
+            "tracing": tracing_status(self.settings),
             "graph": {"backend": self.settings.graph_backend, "available": self.graph_store is not None,
                       "tables": self.graph_store.table_names() if self.graph_store else [],
                       "error": self.graph_error},

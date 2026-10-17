@@ -1,0 +1,152 @@
+# ======================================================================
+# Konfigurasi default ocrpipe (berkomentar).
+# Salin berkas ini, ubah seperlunya, lalu jalankan:
+#   python run_ocr.py ingest data/pdf -o keluaran --config config/default.yaml
+#
+# Semua nilai di bawah adalah DEFAULT; baris yang di-comment hanya untuk
+# menunjukkan pilihan yang tersedia. Hapus tanda '#' untuk mengaktifkan.
+# ======================================================================
+
+# Engine OCR untuk halaman hasil scan.
+#   auto      : pilih engine terbaik yang terpasang (urutan: docling >
+#               paddle > marker > tesseract)
+#   docling   : tabel paling rapi, lisensi MIT
+#   paddle    : PP-StructureV3, struktur tabel kuat (GPU disarankan)
+#   marker    : Surya VLM (GPU; perhatikan lisensi bobot)
+#   tesseract : ringan, CPU-only, selalu bisa dipakai
+ocr_engine: auto
+
+# Engine untuk halaman yang sudah punya text layer. Hampir selalu "native".
+native_engine: native
+
+# Bila engine OCR pilihan tidak tersedia, turun ke daftar ini secara berurut.
+fallback_chain: [docling, paddle, tesseract]
+
+# pages: [1, 2, 3]      # proses halaman tertentu saja (1-based); kosong = semua
+workers: 1               # >1 hanya aman untuk engine native/tesseract
+verbose: true
+continue_on_error: true  # lanjut ke dokumen berikutnya bila satu gagal
+
+# ---------------------------------------------------------------- #
+# Deteksi: kapan sebuah halaman dianggap perlu OCR
+# ---------------------------------------------------------------- #
+detect:
+  min_chars: 120            # < ini (tanpa gambar) -> kosong; (dengan gambar) -> OCR
+  min_char_density: 0.08    # kepadatan karakter minimum per 1000 pt^2
+  max_garbled_ratio: 0.02   # > ini karakter rusak (cid/mojibake) -> paksa OCR
+  full_page_image_ratio: 0.65
+  treat_blank_as_empty: true
+  # force_route: ocr        # paksa SEMUA halaman: "ocr" atau "native"
+
+# ---------------------------------------------------------------- #
+# Praproses citra (hanya untuk halaman yang di-OCR)
+# ---------------------------------------------------------------- #
+preprocess:
+  dpi: 300                  # naikkan ke 400 untuk teks sangat kecil
+  max_pixels: 40000000      # pagar pengaman memori (RAM 8 GB)
+  grayscale: true
+  deskew: true              # luruskan halaman miring
+  deskew_max_angle: 12.0
+  denoise: false            # median blur; merusak garis tabel halus
+  binarize: false           # BIARKAN false untuk engine neural (docling/paddle/marker);
+                            # set true HANYA bila ocr_engine=tesseract
+  binarize_method: adaptive # adaptive | otsu
+  contrast_stretch: true    # CLAHE; membantu hasil fotokopi pudar
+  auto_rotate_osd: true     # koreksi 90/180/270 derajat
+  crop_border: false        # buang bingkai hitam hasil fotokopi
+  save_debug_images: false  # simpan citra praproses untuk lampiran
+
+# ---------------------------------------------------------------- #
+# Engine native (text layer, tanpa OCR)
+# ---------------------------------------------------------------- #
+native:
+  table_strategy: auto      # auto | lines_strict | lines | text | none
+  min_table_cells: 4
+  detect_headings: true
+  heading_size_ratio: 1.18
+  mark_header_footer: true  # tandai kop/footer agar bisa dibuang dari chunk
+  join_lines: true
+
+# ---------------------------------------------------------------- #
+# Tesseract
+# ---------------------------------------------------------------- #
+tesseract:
+  lang: ind+eng             # pastikan data 'ind' sudah terpasang
+  psm: 3                    # segmentasi halaman otomatis penuh
+  oem: 3
+  # cmd: "C:\\Program Files\\Tesseract-OCR\\tesseract.exe"   # Windows bila tak di PATH
+  detect_tables: true
+  min_word_conf: 30.0
+
+# ---------------------------------------------------------------- #
+# PaddleOCR PP-StructureV3
+# ---------------------------------------------------------------- #
+paddle:
+  lang: id                  # resolve ke model Latin PP-OCRv5 (JANGAN "latin")
+  # device: gpu             # auto bila kosong; "cpu" | "gpu" | "gpu:0"
+  use_table_recognition: true
+  use_formula_recognition: false   # matikan: hemat VRAM besar
+  use_chart_recognition: false
+  use_seal_recognition: false
+  use_doc_orientation_classify: true
+  use_doc_unwarping: false
+  prefer_mobile_models: true       # WAJIB true untuk GPU 6 GB
+  feed_pdf_directly: false
+
+# ---------------------------------------------------------------- #
+# Docling
+# ---------------------------------------------------------------- #
+docling:
+  do_ocr: true
+  do_table_structure: true
+  table_mode: accurate      # accurate | fast
+  ocr_engine: tesseract     # auto | tesseract | tesserocr | easyocr | rapidocr
+  ocr_lang: [ind, eng]      # kode Tesseract (ISO 639-2). EasyOCR pakai [id, en]
+  use_vlm: false            # true = granite-docling (jauh lebih berat)
+
+# ---------------------------------------------------------------- #
+# Marker
+# ---------------------------------------------------------------- #
+marker:
+  # mode: balanced          # auto bila kosong (balanced di GPU, fast di CPU)
+  disable_ocr: false        # true = jalur CPU murni (halaman scan dilewati)
+  use_llm: false
+  output_format: chunks     # chunks memberi atribusi halaman terbaik
+
+# ---------------------------------------------------------------- #
+# Chunking (untuk RAG)
+# ---------------------------------------------------------------- #
+chunk:
+  target_chars: 1000
+  max_chars: 1600
+  min_chars: 200
+  overlap_chars: 150
+  split_large_tables: true
+  table_rows_per_shard: 25
+  table_context_prefix: true   # sisipkan judul+kolom di depan chunk tabel
+  prepend_section_path: true   # sisipkan jejak Bab > Sub-bab
+  drop_noise_blocks: true      # buang kop/footer berulang
+  respect_headings: true
+
+# ---------------------------------------------------------------- #
+# Penjaminan mutu (penyaringan otomatis — BUKAN pengukuran akurasi)
+# ---------------------------------------------------------------- #
+qa:
+  min_mean_confidence: 72.0
+  max_garbage_ratio: 0.12
+  min_lexicon_ratio: 0.25
+  min_chars_per_page: 60
+  flag_irregular_tables: true
+
+# ---------------------------------------------------------------- #
+# Keluaran
+# ---------------------------------------------------------------- #
+output:
+  markdown: true
+  jsonl: true
+  csv_tables: true
+  xlsx_tables: true
+  qa_report: true
+  page_marker: comment      # comment | heading
+  front_matter: true
+  combined_jsonl: true      # satu jsonl gabungan untuk semua dokumen

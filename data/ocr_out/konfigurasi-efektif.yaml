@@ -1,0 +1,114 @@
+ocr_engine: auto
+native_engine: native
+fallback_chain:
+- docling
+- paddle
+- tesseract
+pages: null
+workers: 2
+verbose: true
+continue_on_error: true
+detect:
+  min_chars: 120
+  min_char_density: 0.08
+  max_garbled_ratio: 0.02
+  full_page_image_ratio: 0.65
+  treat_blank_as_empty: true
+  force_route: null
+preprocess:
+  dpi: 300
+  max_pixels: 40000000
+  grayscale: true
+  deskew: true
+  deskew_max_angle: 12.0
+  deskew_min_angle: 0.25
+  denoise: false
+  denoise_ksize: 3
+  binarize: false
+  binarize_method: adaptive
+  contrast_stretch: true
+  auto_rotate_osd: true
+  crop_border: false
+  save_debug_images: false
+native:
+  table_strategy: auto
+  min_table_cells: 4
+  detect_headings: true
+  heading_size_ratio: 1.18
+  heading_max_chars: 140
+  mark_header_footer: true
+  header_zone: 0.055
+  footer_zone: 0.055
+  join_lines: true
+tesseract:
+  lang: ind+eng
+  psm: 3
+  oem: 3
+  cmd: null
+  detect_tables: true
+  table_line_frac: 0.25
+  table_min_hlines: 3
+  table_min_vlines: 2
+  min_word_conf: 30.0
+  min_table_conf: 55.0
+  extra_config: ''
+paddle:
+  lang: id
+  device: null
+  use_table_recognition: true
+  use_formula_recognition: false
+  use_chart_recognition: false
+  use_seal_recognition: false
+  use_doc_orientation_classify: true
+  use_doc_unwarping: false
+  use_textline_orientation: false
+  use_region_detection: true
+  text_rec_score_thresh: null
+  prefer_mobile_models: true
+  feed_pdf_directly: false
+docling:
+  do_ocr: true
+  do_table_structure: true
+  table_mode: accurate
+  ocr_engine: tesseract
+  ocr_lang:
+  - ind
+  - eng
+  do_formula_enrichment: false
+  do_code_enrichment: false
+  use_vlm: false
+  vlm_preset: granitedocling
+  force_backend_text: false
+marker:
+  mode: null
+  disable_ocr: false
+  force_ocr: false
+  use_llm: false
+  output_format: chunks
+  disable_image_extraction: true
+chunk:
+  target_chars: 800
+  max_chars: 1400
+  min_chars: 200
+  overlap_chars: 120
+  split_large_tables: true
+  table_rows_per_shard: 25
+  table_context_prefix: true
+  prepend_section_path: true
+  drop_noise_blocks: true
+  respect_headings: true
+qa:
+  min_mean_confidence: 72.0
+  max_garbage_ratio: 0.12
+  min_lexicon_ratio: 0.25
+  min_chars_per_page: 60
+  flag_irregular_tables: true
+output:
+  markdown: true
+  jsonl: true
+  csv_tables: true
+  xlsx_tables: false
+  qa_report: true
+  page_marker: comment
+  front_matter: true
+  combined_jsonl: true

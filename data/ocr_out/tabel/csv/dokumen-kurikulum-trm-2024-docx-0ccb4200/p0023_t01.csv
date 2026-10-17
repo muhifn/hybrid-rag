@@ -1,0 +1,17 @@
+﻿No,Kode BK,Bahan Kajian,Bobot,
+,,,Min,Max
+A,Bahan Kajian Penciri Utama Teknologi Rekayasa Mekatronika,,,
+1,BK01,Matematika dan Ilmu Alam,2,3
+2,BK02,Mekanika,2,3
+3,BK03,Sistem Elektrik,2,3
+4,BK04,Ilmu Komputer,2,3
+5,BK05,Sistem Kontrol,2,3
+6,BK06,Rancang Bangun Sistem Mekatronika,2,3
+7,BK07,Teknik Manufaktur,2,5
+B,Bahan Kajian Pendukung Teknologi Rekayasa Mekatronika,,,
+8,BK08,Al Islam dan Kemuhammadiyahan,2,3
+9,BK09,Kewarganegaraan dan etika profesi,2,3
+10,BK10,Isu Sosial dan Praktek Profesi,2,6
+11,BK11,Manajemen Proyek,2,3
+12,BK12,Bahasa dan Komunikasi,2,3
+13,BK13,Metode Penelitian,2,4

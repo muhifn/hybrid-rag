@@ -1,0 +1,124 @@
+﻿NO.,KODE,"NAMA
+MATAKULIAH",SKS,"JENIS
+KEGIATAN",PERSYARATAN,PENGAKUAN,BUKTI KINERJA,PEDOMAN PENILAIAN,,PENILAI
+NO.,KODE,"NAMA
+MATAKULIAH",SKS,"JENIS
+KEGIATAN",PERSYARATAN,PENGAKUAN,BUKTI KINERJA,NILAI,KRITERIA,PENILAI
+17,KODE,Strategi Negosiasi,2,"Mendapatkan mitra
+kerjasama/mitra
+usaha","Mahasiswa aktif pada
+saat pengajuan","1. Proposal
+2. Bukti penerimaan","1. Bukti kerjasama
+2. Dokumentasi
+program",A,Mendapatkan Mitra,"Dosen Pengampu
+Matakuliah
+Pengayaan"
+17,KODE,Strategi Negosiasi,2,"Mendapatkan
+sponsorship","Mahasiswa aktif pada
+saat pengajuan","1. Proposal
+2. Bukti penerimaan","1. Bukti kerjasama
+2. Dokumentasi
+program",A,Mendapatkan Spornsor,"Dosen Pengampu
+Matakuliah
+Pengayaan"
+18,KODE,Summer Course,3,Summercourse,"1. Mahasiswa aktif
+pada saat pengajuan
+2. Diketahui Ketua
+Program Studi","Surat
+keterangan/rekomendasi
+dari Fakultas","1. Materi kegiatan
+2. Laporan tertulis
+3. Dokumentasi",A,Durasi waktu diatas 2 bulan,"Dosen Pengampu
+Matakuliah
+Pengayaan"
+18,KODE,Summer Course,3,Summercourse,"1. Mahasiswa aktif
+pada saat pengajuan
+2. Diketahui Ketua
+Program Studi","Surat
+keterangan/rekomendasi
+dari Fakultas","1. Materi kegiatan
+2. Laporan tertulis
+3. Dokumentasi",B,"Durasi waktu antara 2
+minggu s/d 2 bulan","Dosen Pengampu
+Matakuliah
+Pengayaan"
+18,KODE,Summer Course,3,"Pertukaran
+pelajar/student
+exchange","1. Mahasiswa aktif
+pada saat pengajuan
+2. Diketahui Ketua
+Program Studi","1. Surat keterangan/
+rekomendasi dari
+Fakultas
+2. Bukti penerimaan","1. Materi kegiatan
+2. Laporan tertulis
+3. Dokumentasi
+4. Log book, Silabus",A,1 semester,"Dosen Pengampu
+Matakuliah
+Pengayaan"
+18,KODE,Summer Course,3,"Pertukaran
+pelajar/student
+exchange","1. Mahasiswa aktif
+pada saat pengajuan
+2. Diketahui Ketua
+Program Studi","1. Surat keterangan/
+rekomendasi dari
+Fakultas
+2. Bukti penerimaan","1. Materi kegiatan
+2. Laporan tertulis
+3. Dokumentasi
+4. Log book, Silabus",B,< 1 semester,"Dosen Pengampu
+Matakuliah
+Pengayaan"
+18,KODE,Summer Course,3,"Short exchange
+programe/short
+course","1. Mahasiswa aktif
+pada saat pengajuan
+2. Diketahui Ketua
+Program Studi","1. Surat keterangan/
+rekomendasi dari
+Fakultas
+2. Bukti pendaftar","1. Materi kegiatan
+2. Daftar Nilai
+3. Dokumentasi",A,"75% lebih dari nilai
+maksimum","Dosen Pengampu
+Matakuliah
+Pengayaan"
+18,KODE,Summer Course,3,"Short exchange
+programe/short
+course","1. Mahasiswa aktif
+pada saat pengajuan
+2. Diketahui Ketua
+Program Studi","1. Surat keterangan/
+rekomendasi dari
+Fakultas
+2. Bukti pendaftar","1. Materi kegiatan
+2. Daftar Nilai
+3. Dokumentasi",B,"60% - 74,9% dari nilai
+maksimum","Dosen Pengampu
+Matakuliah
+Pengayaan"
+18,KODE,Summer Course,3,Outbond programe,"1. Mahasiswa aktif
+pada saat pengajuan
+2. Diketahui Ketua
+Program Studi","1. Surat keterangan/
+rekomendasi dari
+Fakultas
+2. Bukti penerimaan","1. Materi kegiatan
+2. Laporan tertulis
+3. Dokumentasi
+4. Log book, Silabus",A,Internasional,"Dosen Pengampu
+Matakuliah
+Pengayaan"
+18,KODE,Summer Course,3,Outbond programe,"1. Mahasiswa aktif
+pada saat pengajuan
+2. Diketahui Ketua
+Program Studi","1. Surat keterangan/
+rekomendasi dari
+Fakultas
+2. Bukti penerimaan","1. Materi kegiatan
+2. Laporan tertulis
+3. Dokumentasi
+4. Log book, Silabus",B,Nasional,"Dosen Pengampu
+Matakuliah
+Pengayaan"
