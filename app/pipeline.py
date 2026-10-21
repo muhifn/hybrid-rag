@@ -12,6 +12,7 @@ from typing import Any, Iterator
 from langchain_core.documents import Document
 from langchain_core.language_models import BaseChatModel
 from langchain_core.output_parsers import StrOutputParser
+from langsmith import traceable
 
 from app.graph.base import GraphResult
 from app.graph.query_engine import GraphQueryEngine
@@ -64,6 +65,19 @@ class _Prepared:
     context: str
     timings: dict[str, float]
     smalltalk: bool = False
+
+
+def _ask_span(result: RAGResult) -> dict[str, Any]:
+    """Trim the LangSmith output of `ask` (full Documents would bloat the trace)."""
+    return {"answer": result.answer, "route": result.route, "answered": result.answered,
+            "sources": [d.metadata.get("title", "?") for d in result.documents]}
+
+
+def _stream_span(events: list[tuple[str, Any]]) -> dict[str, Any]:
+    """Trim the LangSmith output of `stream` (every token would bloat the trace)."""
+    tokens = sum(1 for kind, _ in events if kind == "token")
+    done = next((value for kind, value in reversed(events) if kind == "done"), None)
+    return {"events": len(events), "tokens": tokens, "answer": getattr(done, "answer", "")}
 
 
 class HybridRAGPipeline:
@@ -175,6 +189,10 @@ class HybridRAGPipeline:
         return bool(p.documents) or (p.graph is not None and p.graph.ok)
 
     # --------------------------------------------------------------- public
+    # Both entry points carry one LangSmith parent run so that condense,
+    # router, retrieval and synthesis nest under a single trace per question
+    # instead of landing as disconnected root runs.
+    @traceable(name="hybrid_rag.ask", run_type="chain", process_outputs=_ask_span)
     def ask(self, question: str, session_id: str | None = None, route_override: str | None = None,
             retrieval_mode: str = "hybrid") -> RAGResult:
         p = self._prepare(question, session_id, route_override, retrieval_mode)
@@ -191,6 +209,7 @@ class HybridRAGPipeline:
             self.sessions.append(session_id, question, answer)
         return self._result(question, p, answer)
 
+    @traceable(name="hybrid_rag.stream", run_type="chain", process_outputs=_stream_span)
     def stream(self, question: str, session_id: str | None = None, route_override: str | None = None,
                retrieval_mode: str = "hybrid") -> Iterator[tuple[str, Any]]:
         """Yield ("meta", RAGResult-without-answer), ("token", str)..., ("done", RAGResult)."""

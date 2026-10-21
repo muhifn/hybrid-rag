@@ -1,3 +1,32 @@
-prodi,semester,sks_dokumen,sks_teori,sks_praktikum,sks_praktek,sumber
-TI,1,20,,,,Panduan Akademik 2025-2026_Teknik Informatika.md:L240
-TI,3,24,,,,Panduan Akademik 2025-2026_Teknik Informatika.md:L278
+id,prodi,semester,sks_dokumen,sks_teori,sks_praktikum,sks_praktek,sumber
+TRM-1,TRM,1,19,15,4,19,Dokumen-Kurikulum-TRM-2024.docx.md:L806
+TRM-2,TRM,2,20,16,4,20,Dokumen-Kurikulum-TRM-2024.docx.md:L830
+TRM-3,TRM,3,20,16,4,20,Dokumen-Kurikulum-TRM-2024.docx.md:L850
+TRM-4,TRM,4,20,14,6,20,Dokumen-Kurikulum-TRM-2024.docx.md:L873
+TRM-5,TRM,5,21,12,6,3,Dokumen-Kurikulum-TRM-2024.docx.md:L896
+TRM-6,TRM,6,21,8,8,5,Dokumen-Kurikulum-TRM-2024.docx.md:L915
+TRM-7,TRM,7,17,11,8,17,Dokumen-Kurikulum-TRM-2024.docx.md:L929
+TRM-8,TRM,8,16,2,1,6,Dokumen-Kurikulum-TRM-2024.docx.md:L943
+TI-1,TI,1,20,,,,Panduan Akademik 2025-2026_Teknik Informatika.md:L240
+TI-2,TI,2,20,,,,Panduan Akademik 2025-2026_Teknik Informatika.md:L255
+TI-3,TI,3,24,,,,Panduan Akademik 2025-2026_Teknik Informatika.md:L278
+TI-4,TI,4,23,,,,Panduan Akademik 2025-2026_Teknik Informatika.md:L305
+TI-5,TI,5,24,,,,Panduan Akademik 2025-2026_Teknik Informatika.md:L319
+TI-6,TI,6,24,,,,Panduan Akademik 2025-2026_Teknik Informatika.md:L340
+TI-7,TI,7,10,,,,Panduan Akademik 2025-2026_Teknik Informatika.md:L350
+TI-8,TI,8,9,,,,Panduan Akademik 2025-2026_Teknik Informatika.md:L358
+TE-1,TE,1,20,,,,Panduan Kurikulum 2023-2024 prodi TE.md:L726
+TE-2,TE,2,20,,,,Panduan Kurikulum 2023-2024 prodi TE.md:L742
+STI-na,STI,,18,16,1,1,Panduan-Akademik-2025-2026_STI.md:L170
+STI-1,STI,1,19,17,1,1,Panduan-Akademik-2025-2026_STI.md:L185
+STI-3,STI,3,23,16,1,6,Panduan-Akademik-2025-2026_STI.md:L217
+STI-6,STI,6,24,15,9,24,Panduan-Akademik-2025-2026_STI.md:L261
+STI-7,STI,7,6,0,0,6,Panduan-Akademik-2025-2026_STI.md:L268
+TM-1,TM,1,20,20,0,0,TM-Panduan Akademik-2026-2027.md:L282
+TM-2,TM,2,20,19,1,0,TM-Panduan Akademik-2026-2027.md:L309
+TM-3,TM,3,24,23,1,0,TM-Panduan Akademik-2026-2027.md:L328
+TM-4,TM,4,24,22,2,0,TM-Panduan Akademik-2026-2027.md:L365
+TM-5,TM,5,24,22,2,0,TM-Panduan Akademik-2026-2027.md:L382
+TM-6,TM,6,24,24,0,0,TM-Panduan Akademik-2026-2027.md:L407
+TM-7,TM,7,9,8,0,1,TM-Panduan Akademik-2026-2027.md:L420
+TM-8,TM,8,9,4,0,5,TM-Panduan Akademik-2026-2027.md:L437

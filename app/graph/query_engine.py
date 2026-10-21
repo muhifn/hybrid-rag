@@ -42,7 +42,10 @@ RULES:
 4. When comparing text, use values exactly as listed in the schema.
 5. For totals, averages, or counts, use aggregate functions.
 6. Give aggregate result columns descriptive aliases.
-7. Questions may be in Indonesian; table and column names are as in the schema."""
+7. Questions may be in Indonesian; table and column names are as in the schema.
+8. For totals of a program's SKS ("total SKS", "jumlah beban studi"), prefer the
+   document-stated per-semester totals in semester_summary (SUM of sks_dokumen);
+   summing mata_kuliah.sks double-counts elective/peminatan pools."""
 
 FIRST_ATTEMPT = "Question: {question}\n{language}:"
 

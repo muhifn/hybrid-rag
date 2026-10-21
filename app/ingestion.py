@@ -138,6 +138,17 @@ def load_chunk_jsonl(path: Path) -> list[Document]:
             skipped += 1
             continue
 
+        first_line, _, rest = text.partition("\n")
+        stripped_heading = False
+        if first_line.startswith("Bagian: ") or (
+            first_line.startswith("[") and first_line.rstrip().endswith("]")
+        ):
+            text = rest.strip()
+            stripped_heading = True
+        if not text:
+            skipped += 1
+            continue
+
         section = row.get("section_path") or []
         metadata = {
             "source": row.get("source_file") or row.get("doc_id") or path.name,
@@ -154,6 +165,12 @@ def load_chunk_jsonl(path: Path) -> list[Document]:
             metadata["page_end"] = int(row["page_end"])
         if isinstance(section, list) and section:
             metadata["section"] = " > ".join(str(s) for s in section)
+        # Rebuild a clean heading from the (QA-cleaned) section trail: the raw
+        # first line can be noisy, but dropping it entirely removes the table's
+        # title/semester terms ("SEMESTER V", "DAFTAR ... DIREKOGNISI ...") from
+        # the indexed text, which kills BM25 recall for exactly those queries.
+        if stripped_heading and metadata.get("section"):
+            text = f"Bagian: {metadata['section']}\n{text}"
         for key in ("doc_version", "doc_date", "doc_category", "unit"):
             if row.get(key):
                 metadata[key] = row[key]

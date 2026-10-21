@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import gc
 import logging
+import re
 import shutil
 import uuid
 from dataclasses import dataclass, field
@@ -22,6 +23,22 @@ from app.text_utils import tokenize
 log = logging.getLogger(__name__)
 
 RETRIEVAL_MODES = ("dense", "bm25", "hybrid")
+
+# Program names as questions phrase them -> the program their documents answer
+# from. The corpus holds several study programs' panduan side by side; a
+# question that names one must not be answered from the others' near-identical
+# visi/misi/kurikulum sections.
+_PROGRAM_ALIASES: dict[str, tuple[str, ...]] = {
+    "teknik informatika": ("teknik informatika", "informatika", "ti"),
+    "sistem dan teknologi informasi": ("sistem dan teknologi informasi", "teknologi informasi", "sti"),
+    "teknik elektro": ("teknik elektro", "elektro", "te"),
+    "teknik mesin": ("teknik mesin", "tm"),
+    "mekatronika": ("mekatronika",),
+}
+_PROGRAM_PATTERNS = {
+    program: tuple(re.compile(rf"\b{re.escape(alias)}\b") for alias in aliases)
+    for program, aliases in _PROGRAM_ALIASES.items()
+}
 
 
 class VectorIndex:
@@ -178,8 +195,31 @@ class RetrieverSet:
         return self.dense if mode == "dense" else self.hybrid
 
     def retrieve(self, query: str, mode: str = "hybrid") -> list[Document]:
-        # EnsembleRetriever returns the fused union of both pools; cut to top_k.
-        return self.get(mode).invoke(query)[: self.top_k]
+        # EnsembleRetriever returns the fused union of both pools; lift the
+        # mentioned program's documents, then cut to top_k.
+        docs = self.get(mode).invoke(query)
+        return self._prefer_mentioned_program(query, docs)[: self.top_k]
+
+    @staticmethod
+    def _prefer_mentioned_program(query: str, docs: list[Document]) -> list[Document]:
+        """Stable-boost documents of a program the query explicitly names.
+
+        "visi misi prodi teknik informatika" must not be answered from the
+        Teknik Elektro/Mesin panduan merely because their visi/misi sections
+        read similarly. Matching titles move to the front; relevance order
+        within each group is preserved.
+        """
+        q = query.lower()
+        wanted = [program for program, patterns in _PROGRAM_PATTERNS.items()
+                  if any(pattern.search(q) for pattern in patterns)]
+        if not wanted:
+            return docs
+
+        def rank(doc: Document) -> int:
+            title = (doc.metadata.get("title") or "").lower()
+            return 0 if any(program in title for program in wanted) else 1
+
+        return sorted(docs, key=rank)
 
 
 def build_retrievers(index: VectorIndex, settings: Settings) -> RetrieverSet:

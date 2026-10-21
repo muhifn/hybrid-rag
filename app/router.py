@@ -61,6 +61,22 @@ ROUTES:
            or relations between rows of the tables
   HYBRID - needs a rule from the documents AND data from the tables together
 
+EXAMPLES:
+  Q: "Berapa jumlah mata kuliah di semester 5 program studi Teknik Informatika?"
+  A: GRAPH - requires counting rows in a table.
+  Q: "Kalau juara 1 Kontes Robot Indonesia, mata kuliah apa saja yang bisa dikonversi dan berapa SKS?"
+  A: VECTOR - the recognition list lives in the document text; the tables have no such data.
+  Q: "Apakah ada mata kuliah bahasa Jepang dan berapa SKS-nya?"
+  A: VECTOR - a catalog question answered by the documents; mentioning a course name alone is not a table query.
+  Q: "Berapa total SKS tiap program studi dan apa aturan pengambilan mata kuliahnya?"
+  A: HYBRID - totals from the tables plus rules from the documents.
+  Q: "Berapa total SKS mata kuliah prodi Teknik Mesin?"
+  A: HYBRID - the official total ("Jumlah Beban Studi") is stated in the document, while the tables list per-course SKS.
+
+IMPORTANT: mentioning course names, "matakuliah", or table-like words does NOT make a question GRAPH.
+Choose GRAPH only when the answer must be computed from table rows (count/sum/average/rank/filter).
+If the answer is a list, rule, or explanation that is written in the documents, choose VECTOR.
+
 Questions are usually in Indonesian."""
 
 # Injected as a prompt *value* via .partial(), so braces are literal - no {{ }} escaping.

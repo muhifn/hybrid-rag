@@ -66,19 +66,38 @@ ANSWER_PROMPT = ChatPromptTemplate.from_messages([
      "Do not guess and do not use general knowledge.\n"
      "4. Numbers in [TABLE] are exact database results. Copy them as-is; do not recompute or round.\n"
      "5. When the question needs a rule from the documents and data from the table, combine both explicitly.\n"
-     "6. Do not mention the words \"context\", \"chunk\", or \"passage\" in the answer."),
+     "6. Do not mention the words \"context\", \"chunk\", or \"passage\" in the answer.\n"
+     "7. If the question asks for a list (\"daftar\", \"apa saja\") and the context contains the matching "
+     "table rows, enumerate them; never claim the data is unavailable while those rows are present."),
     ("human", "CONTEXT:\n\n{context}\n\n---\n\nQUESTION: {question}"),
 ])
 
 
+MAX_DOC_CHARS = 1800
+MAX_CONTEXT_CHARS = 12000
+
+
 def build_context(documents: list[Document], graph: GraphResult | None) -> str:
-    """Number the retrieved chunks and append the table result, if any."""
+    """Number the retrieved chunks and append the table result, if any.
+
+    The local model has an 8k context: oversized table chunks and long top-k
+    lists can starve the answer of completion tokens (reasoning models then
+    return an empty reply), so cap each chunk and the total context size.
+    """
     blocks: list[str] = []
+    used = 0
     for n, doc in enumerate(documents, start=1):
         meta = doc.metadata
         page = f" | page {meta['page']}" if meta.get("page") else ""
-        blocks.append(f"[{n}] Source: {meta.get('source', '?')}{page} | Title: {meta.get('title', '?')}\n"
-                      f"{doc.page_content}")
+        body = doc.page_content
+        if len(body) > MAX_DOC_CHARS:
+            body = body[:MAX_DOC_CHARS].rstrip() + " …[terpotong]"
+        block = (f"[{n}] Source: {meta.get('source', '?')}{page} | Title: {meta.get('title', '?')}\n"
+                 f"{body}")
+        if blocks and used + len(block) > MAX_CONTEXT_CHARS:
+            break
+        blocks.append(block)
+        used += len(block)
 
     if graph is not None:
         lang = graph.language.upper()

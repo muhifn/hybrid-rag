@@ -11,6 +11,7 @@ Safety is layered so a single failure cannot corrupt data:
 from __future__ import annotations
 
 import logging
+import re
 import sqlite3
 import time
 import warnings
@@ -176,8 +177,9 @@ class SQLiteGraphStore:
         bad = sorted(tokens & FORBIDDEN)
         if bad:
             return "contains forbidden keywords: " + ", ".join(bad)
-        if not tokens & set(self.table_names()):
-            return f"does not reference any known table ({', '.join(self.table_names())})"
+        names = self.table_names()
+        if not any(re.search(rf"(?<![A-Za-z0-9_]){re.escape(name)}(?![A-Za-z0-9_])", low) for name in names):
+            return f"does not reference any known table ({', '.join(names)})"
         return None
 
     # ------------------------------------------------------------- running

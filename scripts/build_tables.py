@@ -67,7 +67,7 @@ def extract_prodi_from_filename(filename: str) -> str:
         return 'TI'
     elif 'trm' in fname or 'mekatronika' in fname:
         return 'TRM'
-    elif 'sti' in fname and 'sistem' in fname:
+    elif 'sti' in fname:
         return 'STI'
     elif 'tm-panduan' in fname or 'mesin' in fname:
         return 'TM'
@@ -113,13 +113,26 @@ def clean_leading_empty_column(block: TableBlock) -> None:
             if row.cells:
                 row.cells = row.cells[1:]
 
-def merge_page_split_tables(blocks: List[TableBlock]) -> List[TableBlock]:
+SEM_HEADING_RE = re.compile(r'SEMESTER[\s\-–]+(VIII|VII|VI|IV|IX|V|III|II|I|\d+)', re.IGNORECASE)
+
+def merge_page_split_tables(blocks: List[TableBlock],
+                            lines_by_file: Optional[Dict[str, List[str]]] = None) -> List[TableBlock]:
     if not blocks:
         return []
     merged = [blocks[0]]
     for current in blocks[1:]:
         prev = merged[-1]
         if current.prodi == prev.prodi and current.start_line - prev.end_line < 10:
+            # Never merge across a semester boundary: consecutive per-semester
+            # tables have identical headers, so the semester heading between
+            # them is the only thing separating "Semester III" from "Semester V".
+            between: List[str] = []
+            if lines_by_file:
+                all_lines = lines_by_file.get(current.source_file, [])
+                between = all_lines[prev.end_line:current.start_line - 1]
+            if any(SEM_HEADING_RE.search(ln) for ln in between):
+                merged.append(current)
+                continue
             prev_header = next((r.cells for r in prev.rows if not r.is_separator), None)
             curr_header = next((r.cells for r in current.rows if not r.is_separator), None)
             if prev_header and curr_header:
@@ -134,34 +147,71 @@ def merge_page_split_tables(blocks: List[TableBlock]) -> List[TableBlock]:
     return merged
 
 def extract_semester_from_context(blocks: List[TableBlock], block_idx: int, lines: List[str]) -> Optional[int]:
+    roman_map = {'I': 1, 'II': 2, 'III': 3, 'IV': 4, 'V': 5, 'VI': 6, 'VII': 7, 'VIII': 8}
     block = blocks[block_idx]
-    for i in range(block.start_line - 2, max(0, block.start_line - 20), -1):
-        line = lines[i].strip()
-        match = re.search(r'SEMESTER\s+(I{1,3}|IV|VI{0,3}|\d+)', line, re.IGNORECASE)
-        if match:
-            roman_map = {'I': 1, 'II': 2, 'III': 3, 'IV': 4, 'V': 5, 'VI': 6, 'VII': 7, 'VIII': 8}
-            sem_str = match.group(1).upper()
-            return roman_map.get(sem_str, int(sem_str) if sem_str.isdigit() else None)
-    for row in block.rows[:3]:
+
+    def parse(match: 're.Match') -> Optional[int]:
+        sem_str = match.group(1).upper()
+        return roman_map.get(sem_str, int(sem_str) if sem_str.isdigit() else None)
+
+    # An in-table "SEMESTER X" banner row is the most specific source of truth.
+    for row in [r for r in block.rows if not r.is_separator][:6]:
         if is_banner_row(row.cells):
-            text = row.cells[0].strip()
-            match = re.search(r'SEMESTER\s+(I{1,3}|IV|VI{0,3}|\d+)', text, re.IGNORECASE)
-            if match:
-                roman_map = {'I': 1, 'II': 2, 'III': 3, 'IV': 4, 'V': 5, 'VI': 6, 'VII': 7, 'VIII': 8}
-                sem_str = match.group(1).upper()
-                return roman_map.get(sem_str, int(sem_str) if sem_str.isdigit() else None)
+            m = SEM_HEADING_RE.search(row.cells[0])
+            if m:
+                value = parse(m)
+                if value:
+                    return value
+    if lines:
+        # Then the nearest heading above, then headings within the first lines below.
+        for i in range(block.start_line - 1, max(0, block.start_line - 26), -1):
+            m = SEM_HEADING_RE.search(lines[i])
+            if m:
+                value = parse(m)
+                if value:
+                    return value
+        for i in range(block.start_line, min(len(lines), block.start_line + 8)):
+            m = SEM_HEADING_RE.search(lines[i])
+            if m:
+                value = parse(m)
+                if value:
+                    return value
     return None
+
+def _header_cells(block: TableBlock) -> Optional[List[str]]:
+    """First non-separator, non-banner row, merged with a grouped second header.
+
+    TRM-style tables have "| ... | Bobot sks | | |" followed by
+    "| | Teori | Praktikum | Jumlah |": the export shifts the sub-names, so
+    place them sequentially starting at the "Bobot sks"/SKS group column.
+    """
+    content = [r.cells for r in block.rows if not r.is_separator and not is_banner_row(r.cells)]
+    if not content:
+        return None
+    header = list(content[0])
+    if len(content) > 1:
+        second = content[1]
+        if second and not re.match(r'^\d+$', second[0].strip()):
+            sub_names = [c for c in second
+                         if any(kw in c.lower() for kw in ('teori', 'praktikum', 'praktek', 'pengayaan', 'jumlah'))]
+            group_idx = next((i for i, c in enumerate(header)
+                              if 'bobot' in c.lower() or re.search(r'\bsks\b', c.lower())), None)
+            if sub_names and group_idx is not None:
+                for k, name in enumerate(sub_names):
+                    if group_idx + k < len(header):
+                        header[group_idx + k] = name
+    return header
 
 def is_course_table(block: TableBlock) -> bool:
     if not block.rows:
         return False
-    header_row = next((r for r in block.rows if not r.is_separator), None)
-    if not header_row:
+    header = _header_cells(block)
+    if not header:
         return False
-    header_text = ' '.join(header_row.cells).lower()
+    header_text = ' '.join(header).lower()
     has_kode = any(kw in header_text for kw in ['kode mk', 'kode mata kuliah', 'kode matakuliah'])
     has_nama = any(kw in header_text for kw in ['mata kuliah', 'nama mata', 'nama mk'])
-    has_sks = 'sks' in header_text or 'bobot' in header_text
+    has_sks = any(kw in header_text for kw in ['sks', 'bobot', 'teori', 'praktikum', 'praktek', 'jumlah'])
     return has_kode and has_nama and has_sks
 
 def is_enrichment_table(block: TableBlock) -> bool:
@@ -174,32 +224,97 @@ def is_enrichment_table(block: TableBlock) -> bool:
     return 'pengayaan' in header_text or 'berpikir kritis' in ' '.join(
         [' '.join(r.cells).lower() for r in block.rows[:5]])
 
-def parse_course_row(cells: List[str], prodi: str) -> Optional[Dict]:
-    if not cells or not re.match(r'^\d+$', cells[0].strip()):
+SKS_RE = re.compile(r'^\d{1,2}$')
+KODE_RE = re.compile(r'^0?\d{6,8}$')
+
+def parse_course_row(cells: List[str], prodi: str, header: Optional[List[str]] = None) -> Optional[Dict]:
+    """Parse one course row using the table's header to locate the columns.
+
+    Headers vary per document: [No|Kode|Nama|SKS|Prasyarat], [No|Kode|Nama|Kode CPMK|SKS|CPL...],
+    [No|Kode|Nama|Teori|Praktikum|Jumlah] ... Mapping by column name avoids the
+    positional misalignment that put group codes into the SKS field.
+    """
+    norm = [normalize_whitespace(c) for c in cells]
+    if not norm or is_totals_row(norm) or is_banner_row(norm):
         return None
-    if is_totals_row(cells):
+
+    kode_idx = nama_idx = sks_idx = teori_idx = praktikum_idx = praktek_idx = sem_idx = prasyarat_idx = None
+    if header:
+        hl = [normalize_whitespace(c).lower() for c in header]
+        for i, h in enumerate(hl):
+            if kode_idx is None and 'kode' in h:
+                kode_idx = i
+            if nama_idx is None and 'kode' not in h and any(k in h for k in ('nama', 'mata kuliah', 'matakuliah')):
+                nama_idx = i
+            if sks_idx is None and re.search(r'\bsks\b|jumlah|bobot', h) \
+                    and not any(k in h for k in ('teori', 'praktikum', 'praktek')):
+                sks_idx = i
+            if teori_idx is None and 'teori' in h:
+                teori_idx = i
+            if praktikum_idx is None and 'praktikum' in h:
+                praktikum_idx = i
+            if praktek_idx is None and 'praktek' in h:
+                praktek_idx = i
+            if sem_idx is None and re.match(r'^(smt\.?|sem\.?|semester)$', h.replace(' ', '')):
+                sem_idx = i
+            if prasyarat_idx is None and 'prasyarat' in h:
+                prasyarat_idx = i
+
+    if kode_idx is None or kode_idx >= len(norm) or not KODE_RE.match(norm[kode_idx]):
+        kode_idx = next((i for i, c in enumerate(norm) if KODE_RE.match(c)), None)
+        if kode_idx is None:
+            return None
+        nama_idx = None
+    kode_mk = norm[kode_idx]
+
+    if nama_idx is None or nama_idx >= len(norm) or not norm[nama_idx].strip():
+        nama_idx = kode_idx + 1
+    while nama_idx < len(norm) and not norm[nama_idx].strip():
+        nama_idx += 1
+    if nama_idx >= len(norm) or KODE_RE.match(norm[nama_idx]):
         return None
-    if len(cells) < 4:
-        return None
-    kode_mk = cells[1].strip()
-    if not re.match(r'^0?\d{6,8}$', kode_mk):
-        return None
-    course = {'no': cells[0].strip(), 'kode_mk': kode_mk, 'nama_mk': cells[2].strip(),
-              'sks_teori': None, 'sks_praktikum': None, 'sks_praktek': None,
-              'sks': None, 'prasyarat': None}
-    if len(cells) == 5 and prodi == 'TI':
-        course['sks'] = cells[3].strip()
-        course['prasyarat'] = cells[4].strip() if cells[4].strip() else None
-    elif len(cells) >= 7:
-        course['sks_teori'] = cells[3].strip() if cells[3].strip() else None
-        course['sks_praktikum'] = cells[4].strip() if cells[4].strip() else None
-        course['sks_praktek'] = cells[5].strip() if cells[5].strip() else None
-        course['sks'] = cells[6].strip() if len(cells) > 6 and cells[6].strip() else None
-    elif len(cells) == 4:
-        course['sks'] = cells[3].strip()
-    else:
-        course['sks'] = cells[3].strip() if cells[3].strip() else None
-    return course
+    nama_mk = norm[nama_idx]
+
+    def cell(idx: Optional[int]) -> Optional[str]:
+        if idx is None or idx >= len(norm):
+            return None
+        value = norm[idx].strip()
+        return value or None
+
+    sks = cell(sks_idx)
+    if sks and not SKS_RE.match(sks):
+        sks = None
+    teori, praktikum, praktek = cell(teori_idx), cell(praktikum_idx), cell(praktek_idx)
+    for name, value in (('teori', teori), ('praktikum', praktikum), ('praktek', praktek)):
+        if value and not SKS_RE.match(value):
+            if name == 'teori':
+                teori = None
+            elif name == 'praktikum':
+                praktikum = None
+            else:
+                praktek = None
+    if sks is None and any((teori, praktikum, praktek)):
+        nums = [int(v) for v in (teori, praktikum, praktek) if v and v.isdigit()]
+        sks = str(sum(nums)) if nums else None
+    if sks is None:
+        for i in range(kode_idx + 2, min(len(norm), kode_idx + 7)):
+            if SKS_RE.match(norm[i]) and 1 <= int(norm[i]) <= 12:
+                sks = norm[i]
+                break
+
+    semester = None
+    sem_raw = cell(sem_idx)
+    if sem_raw:
+        nums = set(re.findall(r'\d+', sem_raw))
+        if len(nums) == 1:
+            value = int(nums.pop())
+            if 1 <= value <= 14:
+                semester = value
+
+    return {'kode_mk': kode_mk, 'nama_mk': nama_mk, 'sks': sks,
+            'sks_teori': teori, 'sks_praktikum': praktikum, 'sks_praktek': praktek,
+            'prasyarat': cell(prasyarat_idx), 'semester': semester,
+            'sem_explicit': sem_idx is not None}
 
 def parse_totals_row(cells: List[str]) -> Optional[Dict]:
     if not is_totals_row(cells):
@@ -215,34 +330,49 @@ def parse_totals_row(cells: List[str]) -> Optional[Dict]:
     return summary
 
 def build_mata_kuliah_csv(blocks: List[TableBlock], lines_by_file: Dict[str, List[str]], output_path: str):
-    courses = []
-    for block in blocks:
+    courses: Dict[tuple, Dict] = {}
+    order: List[tuple] = []
+    for block_idx, block in enumerate(blocks):
         if not is_course_table(block):
             continue
         clean_leading_empty_column(block)
-        block_idx = blocks.index(block)
         semester = extract_semester_from_context(blocks, block_idx,
                                                   lines_by_file.get(block.source_file, []))
-        data_rows = [r for r in block.rows if not r.is_separator]
-        if data_rows and not re.match(r'^\d+$', data_rows[0].cells[0].strip()):
-            data_rows = data_rows[1:]
-        for row in data_rows:
-            course = parse_course_row(row.cells, block.prodi)
-            if course:
-                course.pop('no', None)  # Remove 'no' column
-                course['prodi'] = block.prodi
-                course['semester'] = semester
-                course['kurikulum_tahun'] = KURIKULUM_MAP.get(block.prodi)
-                course['sumber'] = f"{block.source_file}:L{row.line_num}"
-                courses.append(course)
-    if courses:
-        fieldnames = ['prodi', 'kode_mk', 'nama_mk', 'semester', 'sks', 'sks_teori',
+        header = _header_cells(block)
+        for row in block.rows:
+            if row.is_separator:
+                continue
+            course = parse_course_row(row.cells, block.prodi, header)
+            if not course:
+                continue
+            # A row-level semester column (e.g. "Smt: 6 / 7 / 8") wins over the heading;
+            # multi-value pools ("5/6/7/8") stay None instead of guessing a semester.
+            if not course.pop('sem_explicit', False):
+                course['semester'] = course.get('semester') or semester
+            course['prodi'] = block.prodi
+            course['kurikulum_tahun'] = KURIKULUM_MAP.get(block.prodi)
+            course['sumber'] = f"{block.source_file}:L{row.line_num}"
+            key = (block.prodi, course['kode_mk'])
+            existing = courses.get(key)
+            if existing is None:
+                courses[key] = course
+                order.append(key)
+            else:
+                def score(c: Dict) -> tuple:
+                    return (c.get('semester') is None, not c.get('sks'))
+                if score(course) < score(existing):
+                    courses[key] = course
+    rows_out = [courses[k] for k in order]
+    for r in rows_out:
+        r['id'] = f"{r['prodi']}-{r['kode_mk']}"
+    if rows_out:
+        fieldnames = ['id', 'prodi', 'kode_mk', 'nama_mk', 'semester', 'sks', 'sks_teori',
                       'sks_praktikum', 'sks_praktek', 'prasyarat', 'kurikulum_tahun', 'sumber']
         with open(output_path, 'w', newline='', encoding='utf-8') as f:
             writer = csv.DictWriter(f, fieldnames=fieldnames)
             writer.writeheader()
-            writer.writerows(courses)
-        print(f"OK mata_kuliah.csv: {len(courses)} rows written")
+            writer.writerows(rows_out)
+        print(f"OK mata_kuliah.csv: {len(rows_out)} rows written")
     else:
         print("!! No course data found")
 
@@ -265,7 +395,14 @@ def build_semester_summary_csv(blocks: List[TableBlock], lines_by_file: Dict[str
                     summaries.append(summary)
                     break
     if summaries:
-        fieldnames = ['prodi', 'semester', 'sks_dokumen', 'sks_teori', 'sks_praktikum', 'sks_praktek', 'sumber']
+        seen = {}
+        for s in summaries:
+            key = f"{s['prodi']}-{s['semester'] if s['semester'] is not None else 'na'}"
+            if key not in seen:
+                s['id'] = key
+                seen[key] = s
+        summaries = list(seen.values())
+        fieldnames = ['id', 'prodi', 'semester', 'sks_dokumen', 'sks_teori', 'sks_praktikum', 'sks_praktek', 'sumber']
         with open(output_path, 'w', newline='', encoding='utf-8') as f:
             writer = csv.DictWriter(f, fieldnames=fieldnames, extrasaction='ignore')
             writer.writeheader()
@@ -297,7 +434,14 @@ def build_enrichment_csv(blocks: List[TableBlock], output_path: str):
                           'sumber': f"{block.source_file}:L{row.line_num}"}
             enrichments.append(enrichment)
     if enrichments:
-        fieldnames = ['prodi', 'kode_mk', 'nama_mk', 'sks', 'sumber']
+        seen = {}
+        for e in enrichments:
+            key = f"{e['prodi']}-{e['kode_mk']}"
+            if key not in seen:
+                e['id'] = key
+                seen[key] = e
+        enrichments = list(seen.values())
+        fieldnames = ['id', 'prodi', 'kode_mk', 'nama_mk', 'sks', 'sumber']
         with open(output_path, 'w', newline='', encoding='utf-8') as f:
             writer = csv.DictWriter(f, fieldnames=fieldnames)
             writer.writeheader()
@@ -366,7 +510,7 @@ def main():
         all_blocks.extend(file_blocks)
 
     print(f"\nTotal raw blocks: {len(all_blocks)}")
-    merged_blocks = merge_page_split_tables(all_blocks)
+    merged_blocks = merge_page_split_tables(all_blocks, lines_by_file)
     print(f"After merging page splits: {len(merged_blocks)} blocks\n")
 
     print("Building CSVs...\n")
