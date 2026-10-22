@@ -195,10 +195,90 @@ class RetrieverSet:
         return self.dense if mode == "dense" else self.hybrid
 
     def retrieve(self, query: str, mode: str = "hybrid") -> list[Document]:
-        # EnsembleRetriever returns the fused union of both pools; lift the
-        # mentioned program's documents, then cut to top_k.
+        # EnsembleRetriever returns the fused union of both pools; collapse
+        # heading-only near-duplicates, lift table chunks for list queries,
+        # then cut to top_k.
         docs = self.get(mode).invoke(query)
+        docs = self._collapse_near_duplicates(docs)
+        docs = self._lift_table_chunks_for_list(query, docs)
         return self._prefer_mentioned_program(query, docs)[: self.top_k]
+
+    # Tokens that mean "the answer is a list of TABLE rows". Critically these
+    # exclude generic "apa saja" ("Apa saja profil lulusan prodi X?" is answered
+    # from prose, not a table).
+    _TABLE_LIST_INTENT = ("daftar", "daftarkan", "daftarnya")
+
+    @staticmethod
+    def _lift_table_chunks_for_list(query: str, docs: list[Document]) -> list[Document]:
+        """For table-list questions, lift at most 3 table chunks to the front.
+
+        "daftar mata kuliah pengayaan yang dapat direkognisi dengan prestasi"
+        ranked the real recognition tables #10/#14 behind prose intros, so the
+        model had no table rows to enumerate. Lifting tables fixes that, but
+        unrestricted lifting pushed off-topic tables into every "apa saja"
+        answer (Q9 then invented a Teknik Informatika profile for a Sistem
+        Informasi question) - so this is capped and keyed to explicit list
+        words, never to the generic "apa saja".
+        """
+        q = query.lower()
+        if not any(token in q for token in RetrieverSet._TABLE_LIST_INTENT):
+            return docs
+
+        # Only lift the best few tables; off-topic tables from the pool must not
+        # crowd out the actually relevant prose.
+        lifted: list[Document] = []
+        rest: list[Document] = []
+        for doc in docs:
+            if doc.metadata.get("content_type") == "table" and len(lifted) < 3:
+                lifted.append(doc)
+            else:
+                rest.append(doc)
+        return lifted + rest
+
+
+    @staticmethod
+    def _collapse_near_duplicates(docs: list[Document]) -> list[Document]:
+        """Drop chunks that are a strict content-subset of a richer chunk on the
+        same page, keeping the richer one at the better of the two ranks.
+
+        Table sections often ship a tiny heading-only chunk alongside the real
+        table chunk (both carry the same "Bagian:" prefix). The tiny one wins
+        BM25 on length, occupies a top-k slot, and the model then honestly says
+        the promised table "is not available in the context". Example: p37 of
+        the Pengayaan panduan - a 316-char heading chunk beat the 2213-char
+        PKM recognition table it duplicates.
+        """
+        if len(docs) < 2:
+            return docs
+        norms = [re.sub(r"[^a-z0-9]+", "", (d.page_content or "").lower()) for d in docs]
+
+        def key(doc: Document) -> tuple[str, object]:
+            return (doc.metadata.get("source") or "", doc.metadata.get("page"))
+
+        pages: dict[tuple[str, object], list[int]] = {}
+        for i, doc in enumerate(docs):
+            if norms[i]:
+                pages.setdefault(key(doc), []).append(i)
+
+        dropped: set[int] = set()
+        # container idx -> best rank to inherit from the chunks it absorbs
+        promoted: dict[int, int] = {}
+        for idxs in pages.values():
+            for i in idxs:
+                container = None
+                for j in idxs:
+                    if j == i or j in dropped:
+                        continue
+                    # keep only if j strictly contains i's text (not equal peers)
+                    if len(norms[j]) > len(norms[i]) * 1.05 and norms[i] in norms[j]:
+                        if container is None or len(norms[j]) > len(norms[container]):
+                            container = j
+                if container is not None:
+                    dropped.add(i)
+                    promoted[container] = min(promoted.get(container, container), i)
+
+        survivors = sorted(((promoted.get(i, i), i) for i in range(len(docs)) if i not in dropped))
+        return [docs[i] for _, i in survivors]
 
     @staticmethod
     def _prefer_mentioned_program(query: str, docs: list[Document]) -> list[Document]:

@@ -68,13 +68,17 @@ ANSWER_PROMPT = ChatPromptTemplate.from_messages([
      "5. When the question needs a rule from the documents and data from the table, combine both explicitly.\n"
      "6. Do not mention the words \"context\", \"chunk\", or \"passage\" in the answer.\n"
      "7. If the question asks for a list (\"daftar\", \"apa saja\") and the context contains the matching "
-     "table rows, enumerate them; never claim the data is unavailable while those rows are present."),
+     "table rows, enumerate EVERY row of every matching table; do not summarize, group, or claim the "
+     "data is unavailable while rows are present."),
     ("human", "CONTEXT:\n\n{context}\n\n---\n\nQUESTION: {question}"),
 ])
 
 
-MAX_DOC_CHARS = 1800
-MAX_CONTEXT_CHARS = 12000
+# The local model is loaded with a 12k-token context window (was 8k). Indonesian
+# text runs ~3.5 chars/token, so 20k chars ~= 5.7k tokens; plus ~0.5k of prompt
+# and the 3072-token completion budget that leaves ~2.7k tokens of headroom.
+MAX_DOC_CHARS = 2800
+MAX_CONTEXT_CHARS = 20000
 
 
 def build_context(documents: list[Document], graph: GraphResult | None) -> str:

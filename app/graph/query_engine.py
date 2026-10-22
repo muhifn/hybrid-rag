@@ -43,9 +43,13 @@ RULES:
 5. For totals, averages, or counts, use aggregate functions.
 6. Give aggregate result columns descriptive aliases.
 7. Questions may be in Indonesian; table and column names are as in the schema.
-8. For totals of a program's SKS ("total SKS", "jumlah beban studi"), prefer the
-   document-stated per-semester totals in semester_summary (SUM of sks_dokumen);
-   summing mata_kuliah.sks double-counts elective/peminatan pools."""
+8. For a program's total SKS ("total SKS", "jumlah beban studi"), the per-semester
+   totals live in semester_summary.sks_dokumen. NEVER sum mata_kuliah.sks - it
+   double-counts elective/peminatan pools.
+   Example Q: "Berapa total SKS mata kuliah prodi Teknik Mesin?"
+        A: SELECT SUM(sks_dokumen) FROM semester_summary AS T1 INNER JOIN
+           program_studi AS T2 ON T1.prodi = T2.prodi WHERE T2.nama_prodi = 'Teknik Mesin'
+   (NOT SUM(mata_kuliah.sks), which wrongly returns 257 instead of 154.)"""
 
 FIRST_ATTEMPT = "Question: {question}\n{language}:"
 
