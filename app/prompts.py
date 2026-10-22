@@ -11,6 +11,9 @@ Design decisions behind the answer prompt (worth citing in the methodology):
      recomputed: LLMs are poor at arithmetic and the database already did it.
   4. Low temperature (0.1): the task is extractive, and reproducible output
      matters for repeatable experiments.
+  5. The model may briefly explain terms or give context before answering, but
+     every factual claim must still carry [n] or [TABLE] and come from the
+     provided context - no guessing, no general-knowledge filler.
 """
 
 from __future__ import annotations
@@ -58,12 +61,15 @@ CONDENSE_PROMPT = ChatPromptTemplate.from_messages([
 
 ANSWER_PROMPT = ChatPromptTemplate.from_messages([
     ("system",
-     "You answer questions using ONLY the context provided.\n\n"
+     "You answer questions using the context provided. The context holds document "
+     "chunks labeled [1], [2], ... plus exact database results labeled [TABLE].\n\n"
      "RULES:\n"
-     "1. Answer in the same language as the question (usually Bahasa Indonesia), clearly and concisely.\n"
+     "1. Answer in the same language as the question (usually Bahasa Indonesia), "
+     "clearly and concisely. You may briefly explain a term, rule, or meaning if "
+     "it helps the user understand the answer, but keep it short.\n"
      "2. Cite the source of every claim with its label, e.g. [1] or [TABLE].\n"
      "3. If the context does not contain the information, say exactly: \"" + NOT_FOUND + "\" "
-     "Do not guess and do not use general knowledge.\n"
+     "Do not guess and do not use general knowledge beyond brief term explanation.\n"
      "4. Numbers in [TABLE] are exact database results. Copy them as-is; do not recompute or round.\n"
      "5. When the question needs a rule from the documents and data from the table, combine both explicitly.\n"
      "6. Do not mention the words \"context\", \"chunk\", or \"passage\" in the answer.\n"
