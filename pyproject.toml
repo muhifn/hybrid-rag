@@ -1,5 +1,5 @@
 [project]
-name = "hybrid-rag-api"
+name = "hybrid-rag"
 version = "1.0.0"
 description = "Hybrid RAG chatbot (vector + graph) with LangChain, LM Studio, Qdrant and FastAPI"
 requires-python = ">=3.10"

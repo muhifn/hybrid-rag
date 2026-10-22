@@ -60,7 +60,7 @@ user question
 On this machine the bare `python` on PATH belongs to another tool's venv (you would see
 `...\hermes-agent\venv\` in tracebacks) and does **not** have this project's dependencies.
 The project ships its own virtualenv in `.venv` that sees the system packages — use it for
-every command. From the project folder (`C:\Users\ipank\RAG\hybrid-rag-api`):
+every command. From the project folder:
 
 ```powershell
 # Windows (PowerShell) — activate once per terminal, then `python` just works:

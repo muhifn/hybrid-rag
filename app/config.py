@@ -100,7 +100,7 @@ class Settings(BaseSettings):
     # shows up as a trace tree at https://smith.langchain.com
     langsmith_tracing: bool = False
     langsmith_api_key: str | None = None
-    langsmith_project: str = "hybrid-rag-api"
+    langsmith_project: str = "hybrid-rag"
     langsmith_endpoint: str | None = None  # only for self-hosted LangSmith
 
     # ---- API ---------------------------------------------------------------
